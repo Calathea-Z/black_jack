@@ -47,26 +47,27 @@ function makePlayerGraphic(){
     let pHandDiv = document.createElement('div');
     let pPointsDiv = document.createElement('div');
     
-    playerDiv.className = 'player';
+    playerDiv.className = 'cards-in-play';
     playerDiv.id = "Player-id";
-    pHandDiv.className = 'hand';
+    pHandDiv.className = 'card-style';
     pHandDiv.id = "player-hand";
-    pPointsDiv.className = 'points';
+    pPointsDiv.className = 'card-style';
     pPointsDiv.id = "player-points";
     playerDiv.appendChild(pHandDiv);
     playerDiv.appendChild(pPointsDiv);
     document.querySelector('.player-stack').appendChild(playerDiv);
+    console.log(playerDiv);
 }       
 function makeDealerGraphic(){
     let dealerDiv = document.createElement('div');
     let dHandDiv = document.createElement('div');
     let dPointsDiv = document.createElement('div');
         
-    dealerDiv.className = 'player';
+    dealerDiv.className = 'cards-in-play';
     dealerDiv.id = "dealer-id";
-    dHandDiv.className = 'hand';
+    dHandDiv.className = 'card-style';
     dHandDiv.id = "dealer-hand";
-    dPointsDiv.className = 'points';
+    dPointsDiv.className = 'card-style';
     dPointsDiv.id = "dealer-points";
     dealerDiv.appendChild(dHandDiv);
     dealerDiv.appendChild(dPointsDiv);
