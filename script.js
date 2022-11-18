@@ -1,5 +1,5 @@
 //Declare deck
-let cardDeck = [
+const cardDeck = [
 ['A', 'Spade'],
 ['2', 'Spade'],
 ['3', 'Spade'],
@@ -54,20 +54,24 @@ let cardDeck = [
     ['K','Heart'],    
 ];
 
+//declare players
+let playerName = "Player 1"
+let dealerName = "Dealer"
+let playerHand = [];
+let dealerHand = [];
+let playerScore = 0;
+let dealerScore = 0;
+const players = [playerName, dealerName];
+const hands = [playerHand, dealerHand];
+const scores = [playerScore, dealerScore];
+console.log(hands[0]);
 
-    
-
-// //declare players
-// let playerOne = ["Player 1", 0, ""];
-// let dealer = ["Player 1", 0, "hand"];
-// players = [playerOne, dealer];
-// console.log(players[1][2]);
 
 
 // runGame();
 
 function shuffleDeck(array) {
-    //Gathered from stack overflow 
+//Gathered from stack overflow 
     let currentIndex = array.length, randomIndex;
     while (currentIndex != 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
@@ -81,56 +85,57 @@ function shuffleDeck(array) {
 
 
 function makePlayerGraphic(){
-    document.querySelector('.dealing-area').innerHTML = '';
+    document.querySelector('.player-card').innerHTML = '';
         let playerDiv = document.createElement('div');
         let handDiv = document.createElement('div');
         let pointsDiv = document.createElement('div');
 
         playerDiv.className = 'player';
-        playerDiv.id = ("Player 1");
+        playerDiv.id = "PlayerID" + 0;
         handDiv.className = 'hand';
-        handDiv.id = ("player-hand");
+        handDiv.id = "playerHand" + 0;
         pointsDiv.className = 'points';
-        pointsDiv.id = ("player-points");
+        pointsDiv.id = "playerPoints" + 0;
         playerDiv.appendChild(handDiv);
         playerDiv.appendChild(pointsDiv);
-        document.querySelector('.dealing-area').appendChild(playerDiv);
+        document.querySelector('.player-card').appendChild(playerDiv);
     }
     
-//     function makeDealerGraphic(){
-//         document.querySelector('.dealing-area').innerHTML = '';
-//             let dealerDiv = document.createElement('div');
-//             let handDiv = document.createElement('div');
-//             let pointsDiv = document.createElement('div');
+    function makeDealerGraphic(){
+        document.querySelector('.dealer-stack').innerHTML = '';
+            let dealerDiv = document.createElement('div');
+            let handDiv = document.createElement('div');
+            let pointsDiv = document.createElement('div');
     
-//             dealerDiv.className = 'player';
-//             dealerDiv.id = ("dealer");
-//             handDiv.className = 'hand';
-//             handDiv.id = ("dealer-hand");
-//             pointsDiv.className = 'points';
-//             pointsDiv.id = ("dealer-points");
-//             dealerDiv.appendChild(handDiv);
-//             dealerDiv.appendChild(pointsDiv);
-//             document.querySelector('.dealing-area').appendChild(dealerDiv);
-//         }
+            dealerDiv.className = 'player';
+            dealerDiv.id = "dealerID";
+            handDiv.className = 'hand';
+            handDiv.id = "dealerHand";
+            pointsDiv.className = 'points';
+            pointsDiv.id = "dealerPoints";
+            dealerDiv.appendChild(handDiv);
+            dealerDiv.appendChild(pointsDiv);
+            document.querySelector('.dealer-stack').appendChild(dealerDiv);
+        }
 
 
-// function deal(){
-//     for (let i = 0; i < 2; i++){
-//         for (let j = 0; j < 2; j++){
-//             let tempCard = cardDeck.pop();
-//             console.log(`CARD DRAWN: ${tempCard}`);
-//             // console.log(players[j]);
-//             players[j][2].push(tempCard);
-//         //    makeCardOne(tempCard,j);
-//             console.log(players[j][2]);
-//             //console.log(players[j].hand);
-//         }
-//     }
-// }
+function deal(){
+    for (let i = 0; i < 2; i++){
+        for (let j = 0; j < 2; j++){
+            let tempCard = cardDeck.pop();
+            console.log(`CARD DRAWN:${tempCard}`);
+            hands[j].push(tempCard)
+        //    makeCardOne(tempCard,j)
+         console.log(`PLAYER 1 : ${hands[0]}`);
+            console.log(`DEALER : ${hands[1]}`);
+        }
+    }
+}
 
-// function makeCardOne(card){
-//     let myHand = document.querySelector('#hand_' + "1")
+// function makeCardOne(card,){
+//     let cardCompareOne = document.querySelector()
+//     if()
+//     let myHand = document.querySelector('#han' + "1")
 //         myHand.appendChild(card)
 // }
 
@@ -209,12 +214,12 @@ function makePlayerGraphic(){
 
 
 function runGame() {
-    currentPlayer = 0;
-     shuffleDeck(cardDeck);
-    console.log(`OG DECK: ${cardDeck}----`);
-//    deal();
-  makePlayerGraphic();
-//    makeDealerGraphic();
+currentPlayer = 0;
+shuffleDeck(cardDeck);
+console.log(`OG DECK: ${cardDeck}----`);
+makePlayerGraphic();
+makeDealerGraphic();
+deal();
   
 }
 
