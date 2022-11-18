@@ -46,8 +46,20 @@ div {
     border: 2px solid orange;
 }
 
-.player, .hand, .points {
-    border: 2px solid black;
+.player-hand, .hand, .points {
+    border: 5px solid black;
     width: 100px;
     height: 180px;
+}
+
+.game-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+}
+
+#hit, #stay{
+    width: 25%;
+    height: 40px;
+    border-radius: 10px;
 }
