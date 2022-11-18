@@ -20,25 +20,41 @@ div {
 
 .gameboard {
     display: flex;
+    flex-direction: space-between;
     gap: 20px;
     width: 80%;
-    height: 800px;
+    height: 400px;
     background-color: rgb(7, 186, 7);
     border: 2px solid black;
     border-radius: 15px;
     margin: 0 auto;
 }
-.card-pile{
- border: 2px solid black;
+.card-pile,{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    border: 2px solid black;
     width: 100px;
     height: 180px;
+    border-radius: 5px;
+    background-color:rgb(233, 233, 233);
+    text-align: center;
+    margin: 0 auto;
+}
+
+.player-stack, .dealer-stack {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    border: 3px solid blue;
     border-radius: 5px;
 }
 
 .dealing-area {
     display: flex;
-    justify-content: space-around
+    justify-content: space-around;
     border: 2px solid black;
+
 
 }
 

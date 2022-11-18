@@ -1,3 +1,9 @@
+//grab buttons
+const hitButton = document.querySelector('#hit');
+const stayButton = document.querySelector('#stay')
+
+
+
 //Declare deck
 let cardDeck = [
     ['A', 'Spade'],
@@ -83,39 +89,37 @@ function shuffleDeck(array) {
         }
         return array;
       }
-    
-    
       function makePlayerGraphic(){
-        document.querySelector('.player-stack').innerHTML = '';
+        document.querySelector('.player-stack');
             let playerDiv = document.createElement('div');
-            let handDiv = document.createElement('div');
-            let pointsDiv = document.createElement('div');
+            let pHandDiv = document.createElement('div');
+            let pPointsDiv = document.createElement('div');
     
             playerDiv.className = 'player';
             playerDiv.id = "Player-id";
-            handDiv.className = 'hand';
-            handDiv.id = "player-hand";
-            pointsDiv.className = 'points';
-            pointsDiv.id = "player-points";
-            playerDiv.appendChild(handDiv);
-            playerDiv.appendChild(pointsDiv);
+            pHandDiv.className = 'hand';
+            pHandDiv.id = "player-hand";
+            pPointsDiv.className = 'points';
+            pPointsDiv.id = "player-points";
+            playerDiv.appendChild(pHandDiv);
+            playerDiv.appendChild(pPointsDiv);
             document.querySelector('.player-stack').appendChild(playerDiv);
         }
         
-        function makeDealerGraphic(){
-            document.querySelector('.dealer-stack').innerHTML = '';
+    function makeDealerGraphic(){
+            document.querySelector('.dealer-stack');
                 let dealerDiv = document.createElement('div');
-                let handDiv = document.createElement('div');
-                let pointsDiv = document.createElement('div');
+                let dHandDiv = document.createElement('div');
+                let dPointsDiv = document.createElement('div');
         
                 dealerDiv.className = 'player';
                 dealerDiv.id = "dealer-id";
-                handDiv.className = 'hand';
-                handDiv.id = "dealer-hand";
-                pointsDiv.className = 'points';
-                pointsDiv.id = "dealer-points";
-                dealerDiv.appendChild(handDiv);
-                dealerDiv.appendChild(pointsDiv);
+                dHandDiv.className = 'hand';
+                dHandDiv.id = "dealer-hand";
+                dPointsDiv.className = 'points';
+                dPointsDiv.id = "dealer-points";
+                dealerDiv.appendChild(dHandDiv);
+                dealerDiv.appendChild(dPointsDiv);
                 document.querySelector('.dealer-stack').appendChild(dealerDiv);
             }
     
@@ -133,7 +137,7 @@ function deal(){
             }
     
             function makeCards(){    
-                let cardSpot = document.querySelector('#player-hand');
+                let cardSpot = document.querySelector('#player-stack');
                 let front = document.createElement('div');
                 let back = document.createElement('div');
                 let emoji = '';
@@ -180,11 +184,12 @@ function deal(){
         currentPlayer+1
     }
     
-    function checkAlive()
+    function checkAlive(){
     for (let i = 0;i< scores.length; i++){
         if(scores[i] > 21){
             console.log( "BUST");
         }
+    }
     }
     
     function stay(){
@@ -230,7 +235,7 @@ function deal(){
         console.log(`OG DECK: ${cardDeck}----`);
        deal();
       makePlayerGraphic();
-    //    makeDealerGraphic();
+       makeDealerGraphic();
       
     }
     
