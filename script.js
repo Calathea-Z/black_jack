@@ -1,6 +1,9 @@
-//grab buttons
+//grab buttons.
 const hitButton = document.querySelector('#hit');
-const stayButton = document.querySelector('#stay')
+const stayButton = document.querySelector('#stay');
+const playAgainButton = document.querySelector('#button-one');
+// grab counter for card left in stack.
+const cardCount = document.querySelector('.card-pile');
 
 
 
@@ -82,6 +85,7 @@ function deal(){
             hands[j].push(tempCard)
             console.log(`PLAYER 1 : ${hands[0]}`);
             console.log(`DEALER : ${hands[1]}`);
+            updateScore();
         }
     }
 }
@@ -158,18 +162,29 @@ function turnOver(){
     }
     score = scores[i];
 }
+function getScore(player){
+
+}
 
 function updateScore(){
+    for (let i = 0; i <player.length; i++){
+        getScore(i);
+        document.querySelector
+    }
 
-}      
+}
+
+function updateDeckCount(){
+    cardCount.innerHTML = cardDeck.length
+}
 
 function runGame(){
 currentPlayer = 0;
 shuffleDeck(cardDeck);
 console.log(`OG DECK: ${cardDeck}----`);
-deal();
 makePlayerGraphic();
 makeDealerGraphic();
+deal();
 }
 
 
