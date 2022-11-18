@@ -90,42 +90,40 @@ function deal(){
     }
 }
     
-function makeCards(){    
-    let cardSpot = document.querySelector('#player-stack');
+function makeCards(playerType, handType){    
+    let cardSpot = document.querySelector(playerType);
     let fullCard = document.createElement('div');
     let frontCard = document.createElement('div');
     let backCard = document.createElement('div');
     let emoji = '';
             
         for(j = 0; j < cardDeck.length; j++){
+            let number = handType[j][0];
+            console.log(handType[j][0]);
              cardSpot.appendChild(fullCard);
-             }            
-        console.log(`TESTING HERE ${hands[1][0][0]}`);
-        for(i =0; i < hands[1].length; i++)
-            tempNumber = hands[[1][i][0]];
             // console.log(`LOOP ---- ${i}----`);                
-                if(hands[1][i][1] === 'Diamond'){
+                if(handType[j][1] === 'Diamond'){
                     emoji = '♦️';
-                    front.style.color = 'red';
-                }else if (hands[1][i][1] === 'Spade'){
+                    frontCard.style.color = 'red';
+                }else if (handType[j][1] === 'Spade'){
                     emoji = '♠️';
-                    front.style.color = 'black';
-                }else if (hands[1][i][1] === 'Heart'){
+                    frontCard.style.color = 'black';
+                }else if (handType[j][1] === 'Heart'){
                     emoji = '♥️';
-                    front.style.color = 'red';
-                }else if (hands[1][i][1] === 'Club'){
+                    frontCard.style.color = 'red';
+                }else if (handType[j][1] === 'Club'){
                     emoji = '♣️';
-                    front.style.color = 'black'
+                    frontCard.style.color = 'black'
                 }         
-        console.log(tempNumber);
-        front.innerText = (`${hands[1][i][0]}${emoji}`);
-        front.className = 'front';
-        back.className = 'back';
-        //console.log(card.innerText);
-        //console.log(card);  
-        cardSpot.appendChild(front);
-        cardSpot.appendChild(back);
-    return cardSpot    
+        frontCard.innerText = (emoji + "  " + number);
+
+        frontCard.className = 'front';
+        backCard.className = 'back';
+        cardSpot.appendChild(frontCard);
+        cardSpot.appendChild(backCard);
+   
+}
+return cardSpot 
 }
     
 function hit() {
@@ -167,7 +165,7 @@ function getScore(player){
 }
 
 function updateScore(){
-    for (let i = 0; i <player.length; i++){
+    for (let i = 0; i < players.length; i++){
         getScore(i);
         document.querySelector
     }
@@ -185,6 +183,7 @@ console.log(`OG DECK: ${cardDeck}----`);
 makePlayerGraphic();
 makeDealerGraphic();
 deal();
+makeCards('#player-hand', playerHand);
 }
 
 

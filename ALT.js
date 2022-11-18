@@ -146,20 +146,19 @@ function deal(){
     }
 }
 
-function makeCards(){    
-    let cardSpot = document.querySelector('#player-hand');
+function makeCards(hand){    
+    let cardSpot = document.querySelector(hand);
+    let container = document.createElement('div');
     let front = document.createElement('div');
     let back = document.createElement('div');
     let emoji = '';
 
         for(j = 0; j < cardDeck.length; j++){
-            cardSpot.appendChild(temp);
+            cardSpot.appendChild(container);
             }
 
 console.log(`TESTING HERE ${hands[1][0][0]}`);
-        for(i =0; i < hands[1].length; i++)
-        tempNumber = hands[[1][i][0]];
-           // console.log(`LOOP ---- ${i}----`);
+        for(i =0; i < hands[1].length; i++){
             
                 if(hands[1][i][1] === 'Diamond'){
                     emoji = '♦️';
@@ -174,13 +173,9 @@ console.log(`TESTING HERE ${hands[1][0][0]}`);
                     emoji = '♣️';
                     front.style.color = 'black'
                 }
-              
-                console.log(tempNumber);
-                    front.innerText = (`${hands[1][i][0]}${emoji}`);
+                    front.innerText = (emoji);
                     front.className = 'front';
                     back.className = 'back';
-                    //console.log(card.innerText);
-                    //console.log(card);  
                     cardSpot.appendChild(front);
                     cardSpot.appendChild(back);
     return cardSpot    
@@ -235,14 +230,11 @@ console.log(`TESTING HERE ${hands[1][0][0]}`);
 function runGame() {
 buildDeck();
 shuffleDeck(cardDeck);
-//currentPlayer = 0;
+currentPlayer = 0;
 makePlayerGraphic();
 makeDealerGraphic();
 deal();
-//makeCards(hands[0]);
-//makeCards(hands[1]);
-  
-}
+
 
 runGame();
 
