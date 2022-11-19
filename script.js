@@ -21,12 +21,12 @@ const playerHand = [];
 const dealerHand = [];
 let playerScore = 0;
 let dealerScore = 0;
-let turn = 0;
+let dealTo = true;
+let test = 0; 
 const players = [playerName, dealerName];
 const hands = [playerHand, dealerHand];
-// const scores = [playerScore, dealerScore];
 
-//runGame();
+
 runGame();    
  
     
@@ -75,21 +75,33 @@ function makeDealerGraphic(){
 }
         
 function deal(){
-    for (let i = 0; i < 2; i++){
-        for (let j = 0; j < 2; j++){
-            turn = (turn + 1);
-            console.log(`-------TURN :: ${turn}`)
+    
+    for (let i = 0; i < 2; i++){   
+        for (let j = 0; j < 2; j++){ 
+            test = test + 1;
+            console.log(`LOOP COUNT ${test}`);
+
+            () => {
+                if (dealTo) {
+                  return !dealTo
+                }
+                return true;
+              };
+            dealTo != dealTo
+            console.log(`BOOLEAN: ${dealTo}`);       
+            console.log(`-------DEALING TO :: ${dealTo}`)
             let tempCard = cardDeck.pop();
             console.log(`CARD DRAWN:${tempCard}`);
             hands[j].push(tempCard)
             console.log(`HANDS ${j} POSITION :: ${hands[j]}`);
             // console.log (`DRAWN CARD POWER :: ${hands[j][0][2]}`);
             // console.log(`FULL HANDS ARRAY ::  ${hands}`);
-            updateScore();
             // console.log(`PLAYER SCORE :: ${playerScore}`);
-            // console.log(`DEALER SCORE :: ${dealerScore}`);
-        }
+            // console.log(`DEALER SCORE :: ${dealerScore}`);    
+        } 
+        updateScore();  
     }
+    
 }
     
 function makeCards(divNeeded,handType,area){ 
@@ -170,30 +182,31 @@ function updateScore(){
     for (let i = 0; i < hands.length; i++){
         console.log(`HANDS ${i} LENGTH:::${hands[i].length}`)
         temp = hands[i];
-        getScore(temp);
+        getScore(temp);    
         //   document.querySelector('#score_' + i).innerHTML = 
     }
 }
 function getScore(cards){
-    let pScore = 0;
-    let dScore = 0;
+    score = 0
     for (i = 0; i < cards.length; i++){
-    if (turn % 2 === 0 ){
-        console.log(`HIT IF -----`)
+    
+    if (dealTo === true ){
+        console.log(`HIT IF ----- ${cards}`)
         console.log(`POWER:: ${cards[i][2]}`);
-        console.log(cards[i][2]); 
-        pScore += cards[i][2];
-        playerScore += pScore
+        // console.log(cards[i][2]); 
+        score = (score + cards[i][2]);
+        // console.log(cards[i][2]);
+        playerScore += score
         console.log(`A:: Player Score: ${playerScore}`);
         console.log(`A:: Dealer Score: ${dealerScore}`);
-    }else{   
-        console.log(`HIT ELSE -- ${cards}`);  
-        dScore += cards[i][2];
-    dealerScore += dScore;
+    }else if(dealTo === false){   
+        console.log(`HIT ELSE -- ${cards}`);
+        console.log(`POWER:: ${cards[i][2]}`);  
+        score = (score + cards[i][2]);
+    dealerScore += score
     console.log(`Z:: Dealer Score: ${dealerScore}`);
     console.log(`Z:: Player Score: ${playerScore}`);
     }
-    return pScore, dScore;
     }
 }
 
