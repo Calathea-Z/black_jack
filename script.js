@@ -23,7 +23,7 @@ let playerScore = 0;
 let dealerScore = 0;
 const players = [playerName, dealerName];
 const hands = [playerHand, dealerHand];
-// const scores = [playerScore, dealerScore];
+const scores = [playerScore, dealerScore];
 
 //runGame();
 runGame();    
@@ -44,32 +44,32 @@ let currentIndex = array.length, randomIndex;
 function makePlayerGraphic(){
     let playerDiv = document.createElement('div');
     let pHandDiv = document.createElement('div');
-    let pPointsDiv = document.createElement('div');
+    let pScoreDiv = document.createElement('div');
     
     playerDiv.className = 'cards-in-play';
     playerDiv.id = "Player-id";
     pHandDiv.className = 'card-style';
     pHandDiv.id = "player-hand";
-    pPointsDiv.className = 'card-style';
-    pPointsDiv.id = "player-points";
+    pScoreDiv.className = 'card-style';
+    pScoreDiv.id = "score_" + 0;
     playerDiv.appendChild(pHandDiv);
-    playerDiv.appendChild(pPointsDiv);
+    playerDiv.appendChild(pScoreDiv);
     document.querySelector('.player-stack').appendChild(playerDiv);
     console.log(playerDiv);
 }       
 function makeDealerGraphic(){
     let dealerDiv = document.createElement('div');
     let dHandDiv = document.createElement('div');
-    let dPointsDiv = document.createElement('div');
+    let dScoreDiv = document.createElement('div');
         
     dealerDiv.className = 'cards-in-play';
     dealerDiv.id = "dealer-id";
     dHandDiv.className = 'card-style';
     dHandDiv.id = "dealer-hand";
-    dPointsDiv.className = 'card-style';
-    dPointsDiv.id = "dealer-points";
+    dScoreDiv.className = 'card-style';
+    dScoreDiv.id = "score_" + 0;
     dealerDiv.appendChild(dHandDiv);
-    dealerDiv.appendChild(dPointsDiv);
+    dealerDiv.appendChild(dScoreDiv);
     document.querySelector('.dealer-stack').appendChild(dealerDiv);
 }
         
@@ -88,7 +88,7 @@ function deal(){
     
 function makeCards(divNeeded,handType,area){ 
     let cardSpot = document.querySelector(divNeeded);  
-    console.log(`HAND TYPLE LENGTH: ${handType.length}`);
+    console.log(`HAND TYPE LENGTH: ${handType.length}`);
 
         for(i = 0; i < handType.length; i++){ 
             let fullCard = document.createElement('div');
@@ -167,18 +167,23 @@ function turnOver(){
 }
 function getScore(hands){
     let score = 0;
-    console.log(`TESTTTT: ${hands[0]}`);
-    for (i = 0; i < hands[i].length; i++){
-       score += hands[i][3];
-       return score
+    for (i = 0; i < hands.length; i++){
+       score += hands[i][2];
     }
-
+    console.log(`SCORE: ${score}`)
+    if (hands === hands[0]){
+        scores[0] += score
+    }else 
+        scores[1]+= score;
+    return score
 }
-
+// getScore(hands[0]);
+// console.log(`SCORE CHECK 2: ${scores[1]}`)
 function updateScore(){
-    for (let i = 0; i < 2; i++){
-        getScore(hands[i]);
-        document.querySelector
+    for (let i = 0; i < hands.length; i++){
+        temp = hands[i];
+        getScore(temp);
+        // document.querySelector('#score_' + i).innerHTML = score
     }
 
 }
