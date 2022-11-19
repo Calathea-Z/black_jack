@@ -90,18 +90,28 @@ function deal(){
     }
 }
     
-function makeCards(playerType, handType){    
-    let cardSpot = document.querySelector(playerType);
-    let fullCard = document.createElement('div');
-    let frontCard = document.createElement('div');
-    let backCard = document.createElement('div');
-    let emoji = '';
+function makeCards(divNeeded,handType,area){ 
+    let cardSpot = document.querySelector(divNeeded);  
+    console.log(`HAND TYPLE LENGTH: ${handType.length}`);
+
+        for(i = 0; i < handType.length; i++){ 
+            let fullCard = document.createElement('div');
+            fullCard.className = "full-card_" + area;   
+            cardSpot.appendChild(fullCard)
             
-        for(j = 0; j < cardDeck.length; j++){
+        }
+        
+    let cardSpotTwo = document.querySelectorAll('.full-card_' + area);
+    let temp = [...cardSpotTwo];
+        console.log(temp);
+
+        for(j = 0; j < handType.length; j++){
+            let frontCard = document.createElement('div');
+            let backCard = document.createElement('div');   
+            let emoji = ''; 
+            console.log(`LOOOOOOP`);
             let number = handType[j][0];
-            console.log(handType[j][0]);
-             cardSpot.appendChild(fullCard);
-            // console.log(`LOOP ---- ${i}----`);                
+            console.log(number);            
                 if(handType[j][1] === 'Diamond'){
                     emoji = '♦️';
                     frontCard.style.color = 'red';
@@ -114,16 +124,15 @@ function makeCards(playerType, handType){
                 }else if (handType[j][1] === 'Club'){
                     emoji = '♣️';
                     frontCard.style.color = 'black'
-                }         
-        frontCard.innerText = (emoji + "  " + number);
+                }
 
-        frontCard.className = 'front';
-        backCard.className = 'back';
-        cardSpot.appendChild(frontCard);
-        cardSpot.appendChild(backCard);
-   
-}
-return cardSpot 
+            frontCard.innerText = (emoji + "  " + number);
+            frontCard.className = 'front';
+            backCard.className = 'back';
+            temp[j].appendChild(frontCard);
+            temp[j].appendChild(backCard);
+        }
+
 }
     
 function hit() {
@@ -179,11 +188,12 @@ function updateDeckCount(){
 function runGame(){
 currentPlayer = 0;
 shuffleDeck(cardDeck);
-console.log(`OG DECK: ${cardDeck}----`);
+// console.log(`OG DECK: ${cardDeck}----`);
 makePlayerGraphic();
 makeDealerGraphic();
 deal();
-makeCards('#player-hand', playerHand);
+makeCards('#player-hand', playerHand, 1);
+makeCards('#dealer-hand', dealerHand, 2);
 }
 
 
