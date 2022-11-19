@@ -21,9 +21,10 @@ const playerHand = [];
 const dealerHand = [];
 let playerScore = 0;
 let dealerScore = 0;
+let turn = 0;
 const players = [playerName, dealerName];
 const hands = [playerHand, dealerHand];
-const scores = [playerScore, dealerScore];
+// const scores = [playerScore, dealerScore];
 
 //runGame();
 runGame();    
@@ -76,14 +77,17 @@ function makeDealerGraphic(){
 function deal(){
     for (let i = 0; i < 2; i++){
         for (let j = 0; j < 2; j++){
-            k=0
+            turn = (turn + 1);
+            console.log(`-------TURN :: ${turn}`)
             let tempCard = cardDeck.pop();
             console.log(`CARD DRAWN:${tempCard}`);
             hands[j].push(tempCard)
-            // console.log(hands);
-            console.log(`PLAYER 1 :${players[j]},  SCORE: ${scores[0]}`);
-            console.log(`DEALER :${players[j]},  SCORE: ${scores[1]}`);
+            console.log(`HANDS ${j} POSITION :: ${hands[j]}`);
+            // console.log (`DRAWN CARD POWER :: ${hands[j][0][2]}`);
+            // console.log(`FULL HANDS ARRAY ::  ${hands}`);
             updateScore();
+            // console.log(`PLAYER SCORE :: ${playerScore}`);
+            // console.log(`DEALER SCORE :: ${dealerScore}`);
         }
     }
 }
@@ -162,27 +166,38 @@ function makeCards(divNeeded,handType,area){
 //     score = scores[i];
 // }
 
-function getScore(cards){
-    // console.log(`LOOK HERE:${hands[0]}`);
-    // console.log(cards);
-    let score = 0;
-    for (i = 0; i < cards.length; i++){
-       score += cards[i][2];
-       console.log(`NEW SCORE = ${score}`)
-       scores[i] += cards [i][2];
-       console.log(`ACTUALY SCORE TALLY: ${i}///${score}`)
-    }
-    return score;
-}
-
 function updateScore(){
     for (let i = 0; i < hands.length; i++){
-        console.log(`HANDS LENGTH ${hands.length}`)
-        getScore(hands[i]);
+        console.log(`HANDS ${i} LENGTH:::${hands[i].length}`)
+        temp = hands[i];
+        getScore(temp);
         //   document.querySelector('#score_' + i).innerHTML = 
     }
-
 }
+function getScore(cards){
+    let pScore = 0;
+    let dScore = 0;
+    for (i = 0; i < cards.length; i++){
+    if (turn % 2 === 0 ){
+        console.log(`HIT IF -----`)
+        console.log(`POWER:: ${cards[i][2]}`);
+        console.log(cards[i][2]); 
+        pScore += cards[i][2];
+        playerScore += pScore
+        console.log(`A:: Player Score: ${playerScore}`);
+        console.log(`A:: Dealer Score: ${dealerScore}`);
+    }else{   
+        console.log(`HIT ELSE -- ${cards}`);  
+        dScore += cards[i][2];
+    dealerScore += dScore;
+    console.log(`Z:: Dealer Score: ${dealerScore}`);
+    console.log(`Z:: Player Score: ${playerScore}`);
+    }
+    return pScore, dScore;
+    }
+}
+
+
 
 function updateDeckCount(){
     cardCount.innerHTML = ("CARDS REMAINING " + cardDeck.length)
