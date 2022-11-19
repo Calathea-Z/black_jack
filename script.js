@@ -55,8 +55,8 @@ function makePlayerGraphic(){
     playerDiv.appendChild(pHandDiv);
     playerDiv.appendChild(pScoreDiv);
     document.querySelector('.player-stack').appendChild(playerDiv);
-    console.log(playerDiv);
-}       
+}      
+
 function makeDealerGraphic(){
     let dealerDiv = document.createElement('div');
     let dHandDiv = document.createElement('div');
@@ -76,38 +76,35 @@ function makeDealerGraphic(){
 function deal(){
     for (let i = 0; i < 2; i++){
         for (let j = 0; j < 2; j++){
+            k=0
             let tempCard = cardDeck.pop();
             console.log(`CARD DRAWN:${tempCard}`);
             hands[j].push(tempCard)
-            console.log(`PLAYER 1 : ${hands[0]}`);
-            console.log(`DEALER : ${hands[1]}`);
+            // console.log(hands);
+            console.log(`PLAYER 1 :${players[j]},  SCORE: ${scores[0]}`);
+            console.log(`DEALER :${players[j]},  SCORE: ${scores[1]}`);
             updateScore();
         }
     }
 }
     
 function makeCards(divNeeded,handType,area){ 
-    let cardSpot = document.querySelector(divNeeded);  
-    console.log(`HAND TYPE LENGTH: ${handType.length}`);
+    let cardSpot = document.querySelector(divNeeded);
 
         for(i = 0; i < handType.length; i++){ 
             let fullCard = document.createElement('div');
             fullCard.className = "full-card_" + area;   
             cardSpot.appendChild(fullCard)
-            
-        }
+         }
         
     let cardSpotTwo = document.querySelectorAll('.full-card_' + area);
     let temp = [...cardSpotTwo];
-        console.log(temp);
 
         for(j = 0; j < handType.length; j++){
             let frontCard = document.createElement('div');
             let backCard = document.createElement('div');   
             let emoji = ''; 
-            console.log(`LOOOOOOP`);
-            let number = handType[j][0];
-            console.log(number);            
+            let number = handType[j][0];          
                 if(handType[j][1] === 'Diamond'){
                     emoji = '♦️';
                     frontCard.style.color = 'red';
@@ -128,68 +125,67 @@ function makeCards(divNeeded,handType,area){
             temp[j].appendChild(frontCard);
             temp[j].appendChild(backCard);
         }
+}
+    
+// function hit() {
+//     let tempCard = cardDeck.pop();
+//     players[currentP].hand.push(Card);
+//     updateScore();
+//     checkAlive();
+//     currentPlayer+1
+// }
+    
+// function checkAlive(){
+//     for (let i = 0;i< scores.length; i++){
+//         if(scores[i] > 21){
+//             console.log( "BUST");
+//         }
+//     }
+// }
+    
+// function stay(){
+//     if(currentPlayer  < 2){
+//         currentPlayer += 1;
+//     }else {
+//         turnOver();
+//     }
+// }
 
-}
-    
-function hit() {
-    let tempCard = cardDeck.pop();
-    players[currentP].hand.push(Card);
-    updateScore();
-    checkAlive();
-    currentPlayer+1
-}
-    
-function checkAlive(){
-    for (let i = 0;i< scores.length; i++){
-        if(scores[i] > 21){
-            console.log( "BUST");
-        }
-    }
-}
-    
-function stay(){
-    if(currentPlayer  < 2){
-        currentPlayer += 1;
-    }else {
-        turnOver();
-    }
-}
+// function turnOver(){
+//     let winner = -1;
+//     let score = 0;
 
-function turnOver(){
-    let winner = -1;
+//     for(let i = 0; i < players.length; i++){    
+//         if (scores[i] >  score && scores[i] < 22)
+//             winner = i;
+//     }
+//     score = scores[i];
+// }
+
+function getScore(cards){
+    // console.log(`LOOK HERE:${hands[0]}`);
+    // console.log(cards);
     let score = 0;
+    for (i = 0; i < cards.length; i++){
+       score += cards[i][2];
+       console.log(`NEW SCORE = ${score}`)
+       scores[i] += cards [i][2];
+       console.log(`ACTUALY SCORE TALLY: ${i}///${score}`)
+    }
+    return score;
+}
 
-    for(let i = 0; i < players.length; i++){    
-        if (scores[i] >  score && scores[i] < 22)
-            winner = i;
-    }
-    score = scores[i];
-}
-function getScore(hands){
-    let score = 0;
-    for (i = 0; i < hands.length; i++){
-       score += hands[i][2];
-    }
-    console.log(`SCORE: ${score}`)
-    if (hands === hands[0]){
-        scores[0] += score
-    }else 
-        scores[1]+= score;
-    return score
-}
-// getScore(hands[0]);
-// console.log(`SCORE CHECK 2: ${scores[1]}`)
 function updateScore(){
     for (let i = 0; i < hands.length; i++){
-        temp = hands[i];
-        getScore(temp);
-        // document.querySelector('#score_' + i).innerHTML = score
+        console.log(`HANDS LENGTH ${hands.length}`)
+        getScore(hands[i]);
+        //   document.querySelector('#score_' + i).innerHTML = 
     }
 
 }
 
 function updateDeckCount(){
-    cardCount.innerHTML = cardDeck.length
+    cardCount.innerHTML = ("CARDS REMAINING " + cardDeck.length)
 }
 
 function runGame(){
@@ -201,6 +197,7 @@ makeDealerGraphic();
 deal();
 makeCards('#player-hand', playerHand, 1);
 makeCards('#dealer-hand', dealerHand, 2);
+updateDeckCount();
 }
 
 
