@@ -9,14 +9,10 @@ const cardCount = document.querySelector('.card-pile');
 
 //Declare deck
 const cardDeck = [
-['A', 'Spade'],['2', 'Spade'],['3', 'Spade'],['4', 'Spade'],['5', 'Spade'],['6', 'Spade'],['7', 'Spade'],
-['8', 'Spade'],['9', 'Spade'],['10', 'Spade'],['J', 'Spade'],['Q', 'Spade'],['K', 'Spade'],['A','Club' ],
-['2','Club' ],['3','Club' ],['4','Club' ],['5','Club' ],['6','Club' ],['7','Club' ],['8','Club' ],['9','Club' ],
-['10','Club'],['J','Club' ],['Q','Club' ],['K','Club' ],['A','Diamond'],['2','Diamond'],['3','Diamond'],
-['4','Diamond'],['5','Diamond'],['6','Diamond'],['7','Diamond'],['8','Diamond'],['9','Diamond'],
-['10','Diamond'],['J','Diamond'],['Q','Diamond'],['K','Diamond'],['A','Heart'],['2','Heart'],['3','Heart'],
-['4','Heart'],['5','Heart'],['6','Heart'],['7','Heart'],['8','Heart'],['9','Heart'],['10','Heart'],
-['J','Heart'],['Q','Heart'],['K','Heart'],];
+['A', 'Spade', 11],['2', 'Spade', 2],['3', 'Spade', 3],['4', 'Spade', 4],['5', 'Spade', 5],['6', 'Spade', 6],['7', 'Spade', 7],['8', 'Spade', 8],['9', 'Spade', 9],['10', 'Spade', 10],['J', 'Spade', 10],['Q', 'Spade', 10],['K', 'Spade', 10],['A','Club', 11],['2','Club', 2],['3','Club', 3],['4','Club', 4],['5','Club', 5],['6','Club', 6],['7','Club', 7],['8','Club', 8],['9','Club', 9],['10','Club', 10],['J','Club', 10],['Q','Club', 10],['K','Club', 10],['A','Diamond', 11],['2','Diamond', 2],['3','Diamond', 3],['4','Diamond', 4],['5','Diamond', 5],['6','Diamond', 6],['7','Diamond', 7],['8','Diamond', 8],['9','Diamond', 9],['10','Diamond', 10],
+['J','Diamond', 10],['Q','Diamond', 10],['K','Diamond', 10],['A','Heart', 11],['2','Heart', 2],['3','Heart', 3],
+['4','Heart', 4],['5','Heart', 5],['6','Heart', 6],['7','Heart', 7],['8','Heart', 8],['9','Heart', 9],
+['10','Heart', 10],['J','Heart', 10],['Q','Heart', 10],['K','Heart', 10]];
                   
 //declare players
 const playerName = "Player 1"
@@ -27,7 +23,7 @@ let playerScore = 0;
 let dealerScore = 0;
 const players = [playerName, dealerName];
 const hands = [playerHand, dealerHand];
-const scores = [playerScore, dealerScore];
+// const scores = [playerScore, dealerScore];
 
 //runGame();
 runGame();    
@@ -169,13 +165,19 @@ function turnOver(){
     }
     score = scores[i];
 }
-function getScore(player){
+function getScore(hands){
+    let score = 0;
+    console.log(`TESTTTT: ${hands[0]}`);
+    for (i = 0; i < hands[i].length; i++){
+       score += hands[i][3];
+       return score
+    }
 
 }
 
 function updateScore(){
-    for (let i = 0; i < players.length; i++){
-        getScore(i);
+    for (let i = 0; i < 2; i++){
+        getScore(hands[i]);
         document.querySelector
     }
 
