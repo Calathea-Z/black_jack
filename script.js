@@ -19,15 +19,16 @@ const playerName = "Player 1"
 const dealerName = "Dealer"
 const playerHand = [];
 const dealerHand = [];
+const players = [playerName, dealerName];
+const hands = [playerHand, dealerHand];
 let playerScore = 0;
 let dealerScore = 0;
-let dealTo = true;
 let test = 0; 
 let scoreP = 0;
 let scoreD = 0;
+let dealTo = true;
 let isAlive = true;
-const players = [playerName, dealerName];
-const hands = [playerHand, dealerHand];
+let dealerTurn = false;
 let winner = '';
     
 function shuffleDeck(array) {
@@ -140,8 +141,7 @@ function makeCards(divNeeded,handType,area){
             let fullCard = document.createElement('div');
             fullCard.className = "full-card_" + area;   
             cardSpot.appendChild(fullCard)
-         }
-        
+         } 
     let cardSpotTwo = document.querySelectorAll('.full-card_' + area);
     let temp = [...cardSpotTwo];
 
@@ -171,55 +171,109 @@ function makeCards(divNeeded,handType,area){
             temp[j].appendChild(backCard);
         }
 }
+
+function addCard(divNeeded, handType, area) {
+    let cardSpot = document.querySelector(divNeeded);
+    let fullCard = document.createElement('div');
+        fullCard.className = "full-card_" + area;   
+        cardSpot.appendChild(fullCard)
+
+    let frontCard = document.createElement('div');
+    let backCard = document.createElement('div');   
+    let emoji = ''; 
+     let number = handType[j][0];          
+         if(handType[j][1] === 'Diamond'){
+             emoji = '♦️';
+             frontCard.style.color = 'red';
+            }else if (handType[j][1] === 'Spade'){
+             emoji = '♠️';
+             frontCard.style.color = 'black';
+            }else if (handType[j][1] === 'Heart'){
+             emoji = '♥️';
+             frontCard.style.color = 'red';
+            }else if (handType[j][1] === 'Club'){
+             emoji = '♣️';
+             frontCard.style.color = 'black'
+            }
+
+            frontCard.innerText = (emoji + "  " + number);
+            frontCard.className = 'front';
+            backCard.className = 'back';
+            fullCard.appendChild(frontCard);
+            fullCard.appendChild(backCard);
+}
 function playerInput(){
     hitButton.addEventListener('click', () => {
+        console.log(`Hit Button Works`)
         let tempCard = cardDeck.pop();
         hands[0].push(tempCard) 
-        makeCards();
         updateScore();
-        makeCards('#player-hand', playerHand, 1);
+        addCard('#player-hand', playerHand, 1);
         checkAlive();
+        setTimeout(dealerMove(), 50000);       
     });
 
     stayButton.addEventListener('click', () => {
-        makeCards('#player-hand', playerHand, 1);
-        return;
-    }); 
+        console.log(`Stay Button Works`); 
+        dealerMove();
+    });
 }
     
 function dealerMove() {
     if (dealerScore <= 17){
     let tempCard = cardDeck.pop();
     hands[1].push(tempCard)
-    makeCards();
     updateScore();
-    makeCards('#player-hand', playerHand, 1);
+    addCard('#dealer-hand', dealerHand, 2);
     checkAlive();
-    }
+    }else{
     dealerStay();
+    alert("the Dealer has chosen to stand");
+    }
 }
     
 function checkAlive(){
-    for (let i = 0; i < scores.length; i++){
-        if(scores[i] > 21){
+        if(playerScore > 21 ){
             isAlive = !isAlive;
-            alert(`${i} BUSTS`)
+            alert( `PLAYER 1 BUSTS`)
+        }else if(dealerScore > 21) {
+            isAlive = !isAlive;
+            alert(`DEALER BUSTS`)
         }
+        updateDeckCount();
+        return
     }
-}
+
+function endCondition() {
+    if (isAlive === false) {
+        return false}
+    else {
+        return true;
+    };
+};
 
 function findWinner(){
         if(playerScore > dealerScore && playerScore < 22){
             winner = "Player 1";
             alert(`PLAYER 1 WINS`)
+            updateDeckCount();
         }
+
             winner = "Dealer";
             alert(`THE HOUSE WINS`);
+            updateDeckCount();
     }
+function checkBlackJack() {
+    if (playerScore = 21){
+        alert('PLAYER 1 GOT BLACKJACK - LUCKY!!!')
+    }else
+    ( alert ('DEALER GOT BLACKJACK - UNLUCKY!'))
+};
     
-function playerStay(){
-    return
-}
+// function playerStay(){
+//     dealerTurn === true;
+//     return
+// }
 function dealerStay(){
     return
 }
@@ -239,13 +293,12 @@ updateDeckCount();
 
 function gameLoop(){
     startGame();
-    if(isAlive === false){
+    if (endCondition() === false){
         findWinner();
     }
     playerInput();
-    dealerMove();
     updateDeckCount();
-}
+    }
 
 gameLoop();
 
