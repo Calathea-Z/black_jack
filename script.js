@@ -23,14 +23,12 @@ let playerScore = 0;
 let dealerScore = 0;
 let dealTo = true;
 let test = 0; 
-scoreP = 0;
-scoreD = 0;
+let scoreP = 0;
+let scoreD = 0;
+let isAlive = true;
 const players = [playerName, dealerName];
 const hands = [playerHand, dealerHand];
-
-
-runGame();    
- 
+let winner = '';
     
 function shuffleDeck(array) {
 //Gathered from stack overflow 
@@ -134,15 +132,8 @@ function getScore(cards){;
     }
     playerScore = scoreP;
     dealerScore = scoreD;
-} 
- 
-        
-    
-
-
-
-
-    
+};
+  
 function makeCards(divNeeded,handType,area){ 
     let cardSpot = document.querySelector(divNeeded);
         for(i = 0; i < handType.length; i++){ 
@@ -180,53 +171,64 @@ function makeCards(divNeeded,handType,area){
             temp[j].appendChild(backCard);
         }
 }
+function playerInput(){
+    hitButton.addEventListener('click', () => {
+        let tempCard = cardDeck.pop();
+        hands[0].push(tempCard) 
+        makeCards();
+        updateScore();
+        makeCards('#player-hand', playerHand, 1);
+        checkAlive();
+    });
+
+    stayButton.addEventListener('click', () => {
+        makeCards('#player-hand', playerHand, 1);
+        return;
+    }); 
+}
     
-// function hit() {
-//     let tempCard = cardDeck.pop();
-//     players[currentP].hand.push(Card);
-//     updateScore();
-//     checkAlive();
-//     currentPlayer+1
-// }
+function dealerMove() {
+    if (dealerScore <= 17){
+    let tempCard = cardDeck.pop();
+    hands[1].push(tempCard)
+    makeCards();
+    updateScore();
+    makeCards('#player-hand', playerHand, 1);
+    checkAlive();
+    }
+    dealerStay();
+}
     
-// function checkAlive(){
-//     for (let i = 0;i< scores.length; i++){
-//         if(scores[i] > 21){
-//             console.log( "BUST");
-//         }
-//     }
-// }
+function checkAlive(){
+    for (let i = 0; i < scores.length; i++){
+        if(scores[i] > 21){
+            isAlive = !isAlive;
+            alert(`${i} BUSTS`)
+        }
+    }
+}
+
+function findWinner(){
+        if(playerScore > dealerScore && playerScore < 22){
+            winner = "Player 1";
+            alert(`PLAYER 1 WINS`)
+        }
+            winner = "Dealer";
+            alert(`THE HOUSE WINS`);
+    }
     
-// function stay(){
-//     if(currentPlayer  < 2){
-//         currentPlayer += 1;
-//     }else {
-//         turnOver();
-//     }
-// }
-
-// function turnOver(){
-//     let winner = -1;
-//     let score = 0;
-
-//     for(let i = 0; i < players.length; i++){    
-//         if (scores[i] >  score && scores[i] < 22)
-//             winner = i;
-//     }
-//     score = scores[i];
-// }
-
-
-
-
+function playerStay(){
+    return
+}
+function dealerStay(){
+    return
+}
 function updateDeckCount(){
     cardCount.innerHTML = ("CARDS REMAINING " + cardDeck.length)
 }
 
-function runGame(){
-currentPlayer = 0;
+function startGame(){
 shuffleDeck(cardDeck);
-// console.log(`OG DECK: ${cardDeck}----`);
 makePlayerGraphic();
 makeDealerGraphic();
 deal();
@@ -234,6 +236,18 @@ makeCards('#player-hand', playerHand, 1);
 makeCards('#dealer-hand', dealerHand, 2);
 updateDeckCount();
 }
+
+function gameLoop(){
+    startGame();
+    if(isAlive === false){
+        findWinner();
+    }
+    playerInput();
+    dealerMove();
+    updateDeckCount();
+}
+
+gameLoop();
 
 
 
