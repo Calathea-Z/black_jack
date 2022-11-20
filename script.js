@@ -23,6 +23,8 @@ let playerScore = 0;
 let dealerScore = 0;
 let dealTo = true;
 let test = 0; 
+scoreP = 0;
+scoreD = 0;
 const players = [playerName, dealerName];
 const hands = [playerHand, dealerHand];
 
@@ -95,6 +97,8 @@ function deal(){
 }
 
 function updateScore(){
+    scoreP = 0;
+    scoreD = 0;
     for (let i = 0; i < hands.length; i++){
         // console.log(`PLAYER HANDS ARRAY LENGTH:::${hands[0].length}`)
         // console.log(`DEALER HANDS ARRAY LENGTH:::${hands[1].length}`)
@@ -106,9 +110,7 @@ function updateScore(){
         //   document.querySelector('#score_' + i).innerHTML = 
     }
 }
-function getScore(cards){
-scoreP = 0;
-scoreD = 0;  
+function getScore(cards){;
     for (i = 0; i < cards.length; i++){
             console.log(`LOOP 3 HIT`);
             console.log(`SCORE P ${scoreP}`)
@@ -121,17 +123,17 @@ scoreD = 0;
                 scoreP += cards[i][2];
                 console.log(`-----IF----- ${cards}`)
                 console.log(`A:: Player Score: ${playerScore}`);
-                console.log(`A:: Dealer Score: ${dealerScore}`);
+                console.log(`A:: Dealer Score: ${dealerScore}`); 
             }else{
                 scoreD += cards[i][2];
                 console.log(`-----ELSE-----${cards}`); 
                 console.log(`B:: Player Score: ${playerScore}`);
                 console.log(`B:: Dealer Score: ${dealerScore}`);
             }
-        }
-    playerScore += scoreP
-    dealerScore += scoreD
-    } 
+    }
+    playerScore = scoreP;
+    dealerScore = scoreD;
+} 
  
         
     
