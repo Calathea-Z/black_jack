@@ -45,21 +45,35 @@ nav {
     gap: 200px;
 }
 .gameboard-inner {
+    padding: 10px;
     display: flex;
-    flex-direction: space-between;
-    gap: 20px;
+    flex-direction: space-evenly;
+    /* gap: 20px; */
     width: 98%;
     height: 10%;
     background-color: rgb(33, 118, 33);
+    border: 2px solid rgb(154, 250, 184, .3);
     border-radius: 15px;
 }
-
 
 .player-stack, .dealer-stack {
     display: flex;
     justify-content: center;
     width: 50%;
     border-radius: 10px;
+}
+
+.card-pile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    width: 100px;
+    height: 160px;
+    border-radius: 5px;
+    background-color:rgb(108, 153, 244);
+    border: 2px solid rgb(154, 250, 184);
+    text-align: center;
 }
 
 .cards-in-play{
@@ -73,6 +87,7 @@ nav {
 }
 
 .card-style {
+    padding: 8px;
     gap: 10px;
     display: flex;
     justify-content: space-evenly;
@@ -80,7 +95,7 @@ nav {
     width: 300px;
     height: 500px;
     border-radius: 5px;
-    background-color: gold;
+    background-color: rgba(250, 216, 27, 0.9);
     border: 3px solid black;
 }
 
@@ -91,7 +106,7 @@ nav {
     width: 300px;
     height: 500px;
     border-radius: 5px;
-    background-color: gold;
+    background-color: rgb(240, 206, 11);
     border: 3px solid black;
 
 }
@@ -103,26 +118,17 @@ nav {
     margin-left: 2.5%;
     margin-top: .8%;
 }
-.card-pile{
-    display: flex;
-    border: 1px solid black;
-    width: 100px;
-    height: 160px;
-    border-radius: 5px;
-    background-color:rgb(108, 153, 244);
-    text-align: center;
-    margin-left: 10%;
-}
 
 .front {
+    padding: 8px;
     display: flex;
     justify-content: flex-end;
     justify-items: space-between;
-    border: 2px solid rgb(154, 250, 184);
+    border: 2px solid rgb(154, 250, 184, .8);
     width: 100px;
     height: 140px;
     border-radius: 5px;
-    background-color:rgb(160, 160, 160);
+    background-color:rgb(160, 160, 160, .7);
 }
 
 #score_0, #score_1{
@@ -140,6 +146,8 @@ nav {
 #hit, #stay{
     width: 10%;
     height: 40px;
-    border-radius: 10px;
+    border-radius: 8px;
+    border: 2px solid rgb(154, 250, 184);
+    background-color:rgb(160, 160, 160);
 }
 
