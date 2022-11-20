@@ -70,7 +70,7 @@ function makeDealerGraphic(){
     dHandDiv.className = 'card-style';
     dHandDiv.id = "dealer-hand";
     dScoreDiv.className = 'card-style';
-    dScoreDiv.id = "score_" + 0;
+    dScoreDiv.id = "score_" + 1;
     dealerDiv.appendChild(dHandDiv);
     dealerDiv.appendChild(dScoreDiv);
     document.querySelector('.dealer-stack').appendChild(dealerDiv);
@@ -106,9 +106,10 @@ function updateScore(){
         getScore(temp);
         dealTo = !dealTo 
         console.log(`PLAYER SCORE :: ${playerScore}`);
-        console.log(`DEALER SCORE :: ${dealerScore}`);   
-        //   document.querySelector('#score_' + i).innerHTML = 
+        console.log(`DEALER SCORE :: ${dealerScore}`);     
     }
+    document.querySelector('#score_0').innerHTML = playerScore;
+    document.querySelector('#score_1').innerHTML = dealerScore;
 }
 function getScore(cards){;
     for (i = 0; i < cards.length; i++){
