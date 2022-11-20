@@ -253,7 +253,7 @@ function dealerStay(){
     return
 }
 function updateDeckCount(){
-    cardCount.innerHTML = ("CARDS REMAINING " + cardDeck.length)
+    cardCount.innerHTML = ("CARDS REMAINING: " + cardDeck.length)
 }
 
 function startGame(){

@@ -9,11 +9,47 @@ body {
 nav {
     display: flex;
     justify-content: flex-end;
-    width: 100%;
+    padding: 10px;
+    width: 90%;
     height: 10%;
     gap: 20px;
-    background-color: rgb(243, 7, 7);
-    color: rgb(233, 233, 233);
+    background-color: rgb(243, 7, 7, .92);
+    border: 2px dashed rgb(154, 250, 184);
+    border-radius: 5px;
+    border-width: 0.20em;
+    color: rgb(154, 247, 5);
+}
+
+.mess {
+    display: flex;
+}
+
+.mess-end{
+    margin-left: 1%;
+    font-size: 22px;
+    display: flex;
+    text-align: right;
+    background-color: rgba(255, 247, 0, 0.4);
+    border-radius: 30px;
+    color: rgb(10, 247, 204);
+    font-family: 'Monoton', cursive;
+    transform: rotate(10deg);
+}   
+
+.subtext {
+    font-family: 'Dancing Script', cursive;
+    font-size: 20px;
+
+}
+
+
+#button-one, #button-two {
+    font-family: 'Rubik Microbe', cursive;
+    width: 12%;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px dashed rgb(110, 244, 153);
+    background-color:rgb(218, 221, 181);
 }
 
 .section-two {
@@ -39,9 +75,11 @@ nav {
 
 .names {
     font-family: 'Dancing Script', cursive;
+    text-decoration: overline;
+    font-size: 15px;
     color: rgb(239, 249, 170);
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     gap: 200px;
 }
 .gameboard-inner {
@@ -64,15 +102,20 @@ nav {
 }
 
 .card-pile{
+    margin-top: 1.5%;
+    padding: 10px;
+    font-size: 18px;
     display: flex;
     justify-content: center;
+    font-family: 'Rubik Microbe', cursive;
     align-items: center;
-    border: 1px solid black;
-    width: 100px;
-    height: 160px;
+    width: 160px;
+    height: 100px;
     border-radius: 5px;
     background-color:rgb(108, 153, 244);
     border: 2px solid rgb(154, 250, 184);
+    color:rgb(107, 248, 79);
+    
     text-align: center;
 }
 
@@ -99,18 +142,6 @@ nav {
     border: 3px solid black;
 }
 
-.score {
-    gap: 10px;
-    display: flex;
-    flex-wrap:wrap;
-    width: 300px;
-    height: 500px;
-    border-radius: 5px;
-    background-color: rgb(240, 206, 11);
-    border: 3px solid black;
-
-}
-
 .game-buttons {
     display: flex;
     justify-content: flex-start;
@@ -129,25 +160,34 @@ nav {
     height: 140px;
     border-radius: 5px;
     background-color:rgb(160, 160, 160, .7);
+    font-family: 'Dancing Script', cursive;
+    font-size: 35px;
 }
 
 #score_0, #score_1{
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid black;
-    display: flex;
-    width: 100px;
-    height: 100px;
-    font-size: 40px;
+    border-radius: 5px;
+    background-color: rgb(254, 246, 198);
+    border: 3px solid rgb(154, 250, 184, .5);
+    margin-bottom: 5%;
+    width: 25%;
+    height: 18%;;
+    font-family: 'Monoton', cursive;
+    font-size: 50px;
     font-weight: bolder;
+    color:rgb(69, 44, 234)
+    
 }
 
 #hit, #stay{
+    color: rgb(1, 73, 216);
+    font-family: 'Rubik Microbe', cursive;
     width: 10%;
     height: 40px;
     border-radius: 8px;
     border: 2px solid rgb(154, 250, 184);
-    background-color:rgb(160, 160, 160);
+    background-color:rgb(181, 218, 221)
 }
 
