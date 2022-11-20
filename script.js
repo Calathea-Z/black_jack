@@ -77,21 +77,12 @@ function makeDealerGraphic(){
         
 function deal(){
     
-    for (let i = 0; i < 2; i++){ 
-        console.log(`OUT LOOP HIT`)  
-        for (let j = 0; j < 2; j++){
-            console.log(`IN LOOP HIT`)
-            console.log(`PLAYER's HAND:: ${hands[0]}`)
-            console.log(`DEALER's HAND:: ${hands[1]}`)     
+    for (let i = 0; i < 2; i++){  
+        for (let j = 0; j < 2; j++){  
             let tempCard = cardDeck.pop();
             hands[j].push(tempCard)
-            console.log(`PLAYER's HAND:: ${hands[0]}`)
-            console.log(`DEALER's HAND:: ${hands[1]}`) 
-            // console.log (`DRAWN CARD POWER :: ${hands[j][0][2]}`);
-            // console.log(`FULL HANDS ARRAY ::  ${hands}`);    
         } 
-        console.log(`-------------------UPDATING SCORES`)
-        updateScore(); 
+    updateScore(); 
     }   
 }
 
@@ -99,36 +90,19 @@ function updateScore(){
     scoreP = 0;
     scoreD = 0;
     for (let i = 0; i < hands.length; i++){
-        // console.log(`PLAYER HANDS ARRAY LENGTH:::${hands[0].length}`)
-        // console.log(`DEALER HANDS ARRAY LENGTH:::${hands[1].length}`)
         temp = hands[i];
         getScore(temp);
-        dealTo = !dealTo 
-        console.log(`PLAYER SCORE :: ${playerScore}`);
-        console.log(`DEALER SCORE :: ${dealerScore}`);     
+        dealTo = !dealTo    
     }
     document.querySelector('#score_0').innerHTML = playerScore;
     document.querySelector('#score_1').innerHTML = dealerScore;
 }
 function getScore(cards){;
     for (i = 0; i < cards.length; i++){
-            console.log(`LOOP 3 HIT`);
-            console.log(`SCORE P ${scoreP}`)
-            console.log(`SCORE D ${scoreD}`)
-            console.log(`BOOLEAN: ${dealTo}`);   
-            console.log(`length: ${cards.length}`)
             if (dealTo === true ){ 
-                console.log(cards[i][2])
-                console.log(cards[0][2])
                 scoreP += cards[i][2];
-                console.log(`-----IF----- ${cards}`)
-                console.log(`A:: Player Score: ${playerScore}`);
-                console.log(`A:: Dealer Score: ${dealerScore}`); 
             }else{
                 scoreD += cards[i][2];
-                console.log(`-----ELSE-----${cards}`); 
-                console.log(`B:: Player Score: ${playerScore}`);
-                console.log(`B:: Dealer Score: ${dealerScore}`);
             }
     }
     playerScore = scoreP;
@@ -210,13 +184,14 @@ function playerInput(){
         updateScore();
         addCard('#player-hand', playerHand, 1);
         checkAlive();
-        setTimeout(dealerMove(), 50000);       
+        dealerMove();      
     });
-
     stayButton.addEventListener('click', () => {
-        console.log(`Stay Button Works`); 
+        console.log(`Stay Button Works`);
+        playerStay = true;
         dealerMove();
     });
+    
 }
     
 function dealerMove() {
@@ -226,23 +201,21 @@ function dealerMove() {
     updateScore();
     addCard('#dealer-hand', dealerHand, 2);
     checkAlive();
+    console.log(`IS ALIVE? ${isAlive}`);
     }else{
     dealerStay();
     alert("the Dealer has chosen to stand");
+    console.log(`IS ALIVE? ${isAlive}`);
     }
 }
     
 function checkAlive(){
-        if(playerScore > 21 ){
-            isAlive = !isAlive;
-            alert( `PLAYER 1 BUSTS`)
-        }else if(dealerScore > 21) {
-            isAlive = !isAlive;
-            alert(`DEALER BUSTS`)
-        }
-        updateDeckCount();
-        return
+    if (playerScore > 21 || dealerScore > 21){
+      isAlive = !isAlive;
     }
+    updateDeckCount();
+    return
+}
 
 function endCondition() {
     if (isAlive === false) {
@@ -253,27 +226,31 @@ function endCondition() {
 };
 
 function findWinner(){
-        if(playerScore > dealerScore && playerScore < 22){
+        if(playerScore === 21 && dealerScore != 21){ 
+            winner = "Player 1";           
+            alert('PLAYER 1 GOT BLACKJACK - LUCKY!!!')
+            updateDeckCount();
+        }
+        else if (dealerScore === 21 && playerScore != 21 ) {
+            winner = "Dealer";
+            alert('THE HOUSE ALWAYS WINS ;-)')
+            updateDeckCount();
+        }
+        else if(playerScore === 21 & dealerScore === 21){
+            alert('You are both lucky, but it cancels out. TIE')
+            updateDeckCount();
+        }       
+        else if (playerScore > dealerScore && playerScore < 22){
             winner = "Player 1";
             alert(`PLAYER 1 WINS`)
             updateDeckCount();
-        }
-
+        }else if (dealerScore > playerScore && dealerScore < 22){
             winner = "Dealer";
-            alert(`THE HOUSE WINS`);
             updateDeckCount();
-    }
-function checkBlackJack() {
-    if (playerScore = 21){
-        alert('PLAYER 1 GOT BLACKJACK - LUCKY!!!')
-    }else
-    ( alert ('DEALER GOT BLACKJACK - UNLUCKY!'))
-};
-    
-// function playerStay(){
-//     dealerTurn === true;
-//     return
-// }
+        }
+        alert(`TIE GAME`); 
+    } 
+
 function dealerStay(){
     return
 }
@@ -293,11 +270,11 @@ updateDeckCount();
 
 function gameLoop(){
     startGame();
+    playerInput();
+    updateDeckCount();
     if (endCondition() === false){
         findWinner();
     }
-    playerInput();
-    updateDeckCount();
     }
 
 gameLoop();
