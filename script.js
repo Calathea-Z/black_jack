@@ -118,7 +118,7 @@ scoreD = 0;
             if (dealTo === true ){ 
                 console.log(cards[i][2])
                 console.log(cards[0][2])
-                scoreP =+ cards[i][2];
+                scoreP += cards[i][2];
                 console.log(`-----IF----- ${cards}`)
                 console.log(`A:: Player Score: ${playerScore}`);
                 console.log(`A:: Dealer Score: ${dealerScore}`);
