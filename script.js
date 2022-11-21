@@ -215,7 +215,7 @@ function checkAlive(){
       else if (dealerScore > 21){
         dealerAlive = false;
       }
-      return playerAlive, dealerAlive
+      endCondition();
 }
 
 function endCondition() {
@@ -261,6 +261,11 @@ function updateDeckCount(){
     cardCount.innerHTML = ("CARDS REMAINING: " + cardDeck.length)
 }
 
+playAgainButton.addEventListener('click', () => {
+    location.reload(true)
+});
+
+
 function startGame(){
     console.log(playerScore);
     console.log(dealerScore)
@@ -272,21 +277,20 @@ makeCards('#player-hand', playerHand, 1);
 makeCards('#dealer-hand', dealerHand, 2);
 checkBJ();
 updateDeckCount();
+gameLoop();
 }
 
 function gameLoop(){
-startGame();
 playerInput();
 updateDeckCount();
-  let time = setInterval(function(){
-        if(endCondition() === false){
+    if(endCondition() === false){
             findWinner();
-        clearInterval(time);
-        return;}
-    },3000); 
+    }
 }
 
-gameLoop();
+startGame();
+
+
 
 
 
