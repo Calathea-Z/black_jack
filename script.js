@@ -219,12 +219,12 @@ function dealerMove() {
     let tempCard = cardDeck.pop();
     hands[1].push(tempCard)
     addCard('#dealer-hand', dealerHand, 2);
+    updateScore();
         if(dealerScore >= 21){
             console.log(`DEALER HIT`);
             findWinner();
             return;
         }
-    updateScore();
     }else{
     document.querySelector('.narration').innerHTML = "The house stays."
     updateScore();
