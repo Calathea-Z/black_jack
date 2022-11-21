@@ -93,7 +93,8 @@ function updateScore(){
     for (let i = 0; i < hands.length; i++){
         temp = hands[i];
         getScore(temp);
-        dealTo = !dealTo    
+        dealTo = !dealTo 
+        checkAlive();
     }
     document.querySelector('#score_0').innerHTML = playerScore;
     document.querySelector('#score_1').innerHTML = dealerScore;
@@ -179,15 +180,17 @@ function addCard(divNeeded, handType, area) {
 }
 function playerInput(){
     hitButton.addEventListener('click', () => {
+        document.querySelector('.narration').innerHTML = "You hit!"
         let tempCard = cardDeck.pop();
         hands[0].push(tempCard) 
         updateScore();
         console.log(playerScore);
         addCard('#player-hand', playerHand, 1);
         checkAlive();
-        setTimeout(dealerMove, 2000);      
+        setTimeout(dealerMove, 2000);    
     });
     stayButton.addEventListener('click', () => {
+        document.querySelector('.narration').innerHTML = "You stay!"
         playerStay = true;
         setTimeout(dealerMove, 2000);
     });
@@ -196,6 +199,7 @@ function playerInput(){
     
 function dealerMove() {
     if (dealerScore <= 17){
+    document.querySelector('.narration').innerHTML = "The house hits."
     let tempCard = cardDeck.pop();
     hands[1].push(tempCard)
     updateScore();
@@ -203,19 +207,19 @@ function dealerMove() {
     addCard('#dealer-hand', dealerHand, 2);
     checkAlive();
     }else{
-    dealerStay();
     checkAlive();
-    alert("the Dealer has chosen to stand");
+    document.querySelector('.narration').innerHTML = "The house stays."
     }
 }
     
 function checkAlive(){
     if (playerScore > 21){
-      playerAlive = false }
+      playerAlive = false 
+    return playerAlive}
       else if (dealerScore > 21){
-        dealerAlive = false;
+       dealerAlive = false;
+       return dealerAlive
       }
-      endCondition();
 }
 
 function endCondition() {
@@ -228,35 +232,30 @@ function endCondition() {
 
 function findWinner(){
      if (playerScore > dealerScore && playerScore < 22){
-            winner = "Player 1";
-            alert(`PLAYER 1 WINS`)
+        document.querySelector('.narration').innerHTML = "You have Won!"
             updateDeckCount();
         }else if (dealerScore > playerScore && dealerScore < 22){
-            winner = "Dealer";
+        document.querySelector('.narration').innerHTML = "The house ALWAYS wins!"
             updateDeckCount();
         }
  }
 
  function checkBJ() {
-    if(playerScore === 21 && dealerScore != 21){ 
-        winner = "Player 1";           
-        alert('PLAYER 1 GOT BLACKJACK - LUCKY!!!')
+    if(playerScore === 21 && dealerScore != 21){           
+        document.querySelector('.narration').innerHTML = "BLACKJACK!"
         updateDeckCount();
     }
     else if (dealerScore === 21 && playerScore != 21 ) {
         winner = "Dealer";
-        alert('THE HOUSE ALWAYS WINS ;-)')
+        document.querySelector('.narration').innerHTML = "HOUSE BLACKJACK"
         updateDeckCount();
     }
     else if(playerScore === 21 & dealerScore === 21){
-        alert('You are both lucky, but it cancels out. TIE')
+        document.querySelector('.narration').innerHTML = "What are the odds? You and the house got blackjack"
         updateDeckCount();
     }    
  }
 
-function dealerStay(){
-    return
-}
 function updateDeckCount(){
     cardCount.innerHTML = ("CARDS REMAINING: " + cardDeck.length)
 }
@@ -267,8 +266,6 @@ playAgainButton.addEventListener('click', () => {
 
 
 function startGame(){
-    console.log(playerScore);
-    console.log(dealerScore)
 shuffleDeck(cardDeck);
 makePlayerGraphic();
 makeDealerGraphic();
@@ -283,6 +280,7 @@ gameLoop();
 function gameLoop(){
 playerInput();
 updateDeckCount();
+checkAlive();
     if(endCondition() === false){
             findWinner();
     }

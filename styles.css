@@ -39,11 +39,11 @@ body {
 }
 
 .message {
-    margin-top: 2%;
+    margin-top: -5%;
     transform: rotate(-10deg);
     align-self: flex-end;
     color: rgb(239, 249, 170);
-    font-size: 22px;
+    font-size: 28px;
     
 }
 
@@ -117,7 +117,7 @@ body {
     flex-wrap:wrap;
     width: 300px;
     height: 500px;
-    border-radius: 5px;
+    border-radius: 4px;
     background-color: rgba(250, 216, 27, 0.9);
     border: 3px solid black;
 }
@@ -150,6 +150,12 @@ body {
 
 .updates {
     color: white;
+    background-color:rgb(154, 247, 5, .7); 
+    font-size: 60px;
+    padding: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    margin-top: 2%;
+    margin-right: 20%;
     border: 2px dashed rgb(154, 250, 184);
 }
 
@@ -208,3 +214,4 @@ body {
 #button-two {
     margin-right: .5%;
 }
+
