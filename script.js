@@ -241,20 +241,20 @@ function checkAlive(){
       }
 }
 
-function endCondition() {
-    if (playerAlive === false || dealerAlive === false){
-        return false}
-    else {
-        return true;
-    };
-};
+// function endCondition() {
+//     if (playerAlive === false || dealerAlive === false){
+//         return false}
+//     else {
+//         return true;
+//     };
+// };
 
 function findWinner(){
-     if (playerScore > dealerScore && playerScore < 22){
+     if (playerScore > dealerScore && dealerScore >= 17 && playerScore < 22){
         document.querySelector('.narration').innerHTML = "You have Won!"
         console.log(`find winner working`)
             updateDeckCount();
-        }else if (dealerScore > playerScore && dealerScore < 22){
+        }else if (dealerScore > playerScore && playerScore >= 17 && dealerScore < 22){
         document.querySelector('.narration').innerHTML = "The house ALWAYS wins!"
             console.log(`find winner working`)
             updateDeckCount();
@@ -307,10 +307,10 @@ gameLoop();
 function gameLoop(){
 playerInput();
 updateDeckCount();
-checkAlive();
-    if(endCondition() === false){
-            findWinner();
-    }
+// checkAlive();
+//     if(endCondition() === false){
+//             findWinner();
+//     }
 }
 
 startGame();
