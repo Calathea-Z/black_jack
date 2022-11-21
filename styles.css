@@ -7,23 +7,25 @@ body {
 }
 
 
-.mess {
+.header {
     display: flex;
 }
 
-.mess-end{
+.header-end {
     margin-left: 1%;
     margin-top: .5%;
     font-size: 22px;
     display: flex;
     text-align: right;
     background-color: rgba(255, 247, 0, 0.4);
-    border: 2px dashed rgb(154, 250, 184);
-    border-width: 0.08em;
+    border: 4px dashed rgb(215, 249, 21);
+    border-width: 0.25em;
+    box-shadow: 0  0px 50px rgba(208, 241, 19, 1);
     border-radius: 30px;
     color: rgb(10, 247, 204);
     font-family: 'Monoton', cursive;
     transform: rotate(10deg);
+      
 }   
 
 .subtext {
@@ -80,7 +82,7 @@ body {
     border-radius: 10px;
 }
 
-.card-pile{
+.card-pile {
     margin-top: 1.5%;
     padding: 10px;
     font-size: 18px;
@@ -175,7 +177,7 @@ body {
     color: rgb(154, 247, 5);
 }
 
-#score_0, #score_1{
+#score_0, #score_1 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -192,7 +194,7 @@ body {
     
 }
 
-#hit, #stay{
+#hit, #stay {
     color: rgb(1, 73, 216);
     font-family: 'Rubik Microbe', cursive;
     width: 60px;
@@ -215,7 +217,13 @@ body {
     margin-right: .5%;
 }
 
-@media screen and (max-width: 1600px){
+ #button-one:hover, #button-two:hover, #hit:hover, #stay:hover {
+    border: 4px dashed rgb(215, 249, 21);
+    border-width: 0.25em;
+    box-shadow: 0  0px 50px rgba(208, 241, 19, 1);  
+}
+
+@media screen and (max-width: 1600px) {
     body {
         background-color: rgb(27, 23, 27);
         height:50%;
@@ -230,15 +238,20 @@ body {
         font-size: 20px;     
     }
 
-    .mess {
+    .header {
         display: flex;
         width: 10%;
     }
+    .header-end {
+        margin-left: 0;
+        font-size: 18px;
+    }   
+
     .gameboard-outer {
         gap: 2px;
     }
 
-    .mess-end{
+    .header-end {
         margin-left: 0;
         font-size: 18px;
     }   
@@ -253,7 +266,7 @@ body {
         gap: 50px;
     }
 
-    .card-pile{
+    .card-pile {
         margin-top: 0;
         padding: 5px;
         font-size: 10px;
@@ -263,7 +276,7 @@ body {
         text-align: center;
     }
 
-    .cards-in-play{
+    .cards-in-play {
         gap: 2px;
     }
 

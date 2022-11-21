@@ -26,6 +26,10 @@ let dealerScore = 0;
 let test = 0; 
 let scoreP = 0;
 let scoreD = 0;
+// counter for new player card graphics after initial deal
+let p = 2;
+// counter for new dealer card graphics after initial deal
+let d = 2;
 let dealTo = true;
 let playerAlive = true;
 let dealerAlive = true;
@@ -162,18 +166,18 @@ function addCard(divNeeded, handType, area) {
     let frontCard = document.createElement('div');
     let backCard = document.createElement('div');   
     let emoji = ''; 
-    let number = handType[j][0];
-    console.log(handType[j][0]);          
-         if(handType[j][1] === 'Diamond'){
+    let number = handType[2][0];
+    console.log(handType[2][0]);          
+         if(handType[2][1] === 'Diamond'){
              emoji = '♦️';
              frontCard.style.color = 'red';
-            }else if (handType[j][1] === 'Spade'){
+            }else if (handType[2][1] === 'Spade'){
              emoji = '♠️';
              frontCard.style.color = 'black';
-            }else if (handType[j][1] === 'Heart'){
+            }else if (handType[2][1] === 'Heart'){
              emoji = '♥️';
              frontCard.style.color = 'red';
-            }else if (handType[j][1] === 'Club'){
+            }else if (handType[2][1] === 'Club'){
              emoji = '♣️';
              frontCard.style.color = 'black'
             }
@@ -190,9 +194,8 @@ function playerInput(){
         document.querySelector('.narration').innerHTML = "You hit!"
         let tempCard = cardDeck.pop();
         hands[0].push(tempCard) 
-        updateScore();
-        console.log(playerScore);
         addCard('#player-hand', playerHand, 1);
+        updateScore();
         if (playerScore >= 21){
             console.log(`HIT`)
             findWinner();
@@ -203,6 +206,7 @@ function playerInput(){
     });
     stayButton.addEventListener('click', () => {
         document.querySelector('.narration').innerHTML = "You stay!"
+        updateScore();
         playerStay = true;
         setTimeout(dealerMove, 2000);
     });
@@ -214,18 +218,16 @@ function dealerMove() {
     document.querySelector('.narration').innerHTML = "The house hits."
     let tempCard = cardDeck.pop();
     hands[1].push(tempCard)
-    updateScore();
-    console.log(dealerScore);
     addCard('#dealer-hand', dealerHand, 2);
         if(dealerScore >= 21){
             console.log(`DEALER HIT`);
             findWinner();
             return;
         }
-    // checkAlive();
+    updateScore();
     }else{
-    // checkAlive();
     document.querySelector('.narration').innerHTML = "The house stays."
+    updateScore();
     findWinner();
     return;
     }
@@ -240,14 +242,6 @@ function checkAlive(){
        return dealerAlive
       }
 }
-
-// function endCondition() {
-//     if (playerAlive === false || dealerAlive === false){
-//         return false}
-//     else {
-//         return true;
-//     };
-// };
 
 function findWinner(){
      if (playerScore > dealerScore && dealerScore >= 17 && playerScore < 22){
@@ -307,10 +301,6 @@ gameLoop();
 function gameLoop(){
 playerInput();
 updateDeckCount();
-// checkAlive();
-//     if(endCondition() === false){
-//             findWinner();
-//     }
 }
 
 startGame();
