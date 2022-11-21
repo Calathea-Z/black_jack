@@ -31,7 +31,9 @@ let playerAlive = true;
 let dealerAlive = true;
 let dealerTurn = false;
 let winner = '';
-    
+
+
+ //shuffles deck   
 function shuffleDeck(array) {
 //Gathered from stack overflow 
 let currentIndex = array.length, randomIndex;
@@ -43,7 +45,7 @@ let currentIndex = array.length, randomIndex;
     }
     return array;
 }
-
+//Makes play area for player
 function makePlayerGraphic(){
     let playerDiv = document.createElement('div');
     let pHandDiv = document.createElement('div');
@@ -60,6 +62,7 @@ function makePlayerGraphic(){
     document.querySelector('.player-stack').appendChild(playerDiv);
 }      
 
+//Makes play area for dealer
 function makeDealerGraphic(){
     let dealerDiv = document.createElement('div');
     let dHandDiv = document.createElement('div');
@@ -75,7 +78,8 @@ function makeDealerGraphic(){
     dealerDiv.appendChild(dScoreDiv);
     document.querySelector('.dealer-stack').appendChild(dealerDiv);
 }
-        
+ 
+//Deals 2 cards to each player 
 function deal(){
     
     for (let i = 0; i < 2; i++){  
@@ -86,7 +90,7 @@ function deal(){
     updateScore(); 
     }   
 }
-
+//Updates score tally
 function updateScore(){
     scoreP = 0;
     scoreD = 0;
@@ -99,6 +103,7 @@ function updateScore(){
     document.querySelector('#score_0').innerHTML = playerScore;
     document.querySelector('#score_1').innerHTML = dealerScore;
 }
+//Calculates score of hand
 function getScore(cards){;
     for (i = 0; i < cards.length; i++){
             if (dealTo === true ){ 
@@ -110,7 +115,7 @@ function getScore(cards){;
     playerScore = scoreP;
     dealerScore = scoreD;
 };
-  
+//Makes card graphics.  
 function makeCards(divNeeded,handType,area){ 
     let cardSpot = document.querySelector(divNeeded);
         for(i = 0; i < handType.length; i++){ 
@@ -147,7 +152,7 @@ function makeCards(divNeeded,handType,area){
             temp[j].appendChild(backCard);
         }
 }
-
+// Adds a new card to the hand after a hit.
 function addCard(divNeeded, handType, area) {
     let cardSpot = document.querySelector(divNeeded);
     let fullCard = document.createElement('div');
@@ -157,7 +162,8 @@ function addCard(divNeeded, handType, area) {
     let frontCard = document.createElement('div');
     let backCard = document.createElement('div');   
     let emoji = ''; 
-     let number = handType[j][0];          
+    let number = handType[j][0];
+    console.log(handType[j][0]);          
          if(handType[j][1] === 'Diamond'){
              emoji = '♦️';
              frontCard.style.color = 'red';
@@ -178,6 +184,7 @@ function addCard(divNeeded, handType, area) {
             fullCard.appendChild(frontCard);
             fullCard.appendChild(backCard);
 }
+
 function playerInput(){
     hitButton.addEventListener('click', () => {
         document.querySelector('.narration').innerHTML = "You hit!"
