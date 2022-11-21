@@ -6,19 +6,6 @@ body {
     gap: 10px;
 }
 
-nav {
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px;
-    width: 90%;
-    height: 10%;
-    gap: 20px;
-    background-color: rgb(243, 7, 7, .92);
-    border: 2px dashed rgb(154, 250, 184);
-    border-radius: 5px;
-    border-width: 0.10em;
-    color: rgb(154, 247, 5);
-}
 
 .mess {
     display: flex;
@@ -43,16 +30,6 @@ nav {
     font-family: 'Dancing Script', cursive;
     font-size: 20px;
 
-}
-
-
-#button-one, #button-two {
-    font-family: 'Rubik Microbe', cursive;
-    width: 12%;
-    height: 40px;
-    border-radius: 5px;
-    border: 2px dashed rgb(110, 244, 153);
-    background-color:rgb(218, 221, 181);
 }
 
 .section-two {
@@ -176,6 +153,22 @@ nav {
     border: 2px dashed rgb(154, 250, 184);
 }
 
+.footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 99.8%;
+    height: 3.5%;
+    gap: 4px;
+    /* background-color: rgba(133, 133, 133, 0.009); */
+    border-radius: 5px;
+    border-width: 0.10em;
+    color: rgb(154, 247, 5);
+}
+
 #score_0, #score_1{
     display: flex;
     justify-content: center;
@@ -203,3 +196,15 @@ nav {
     background-color:rgb(181, 218, 221)
 }
 
+#button-one, #button-two {
+    font-family: 'Rubik Microbe', cursive;
+    /* width: 10%; */
+    height: 40px;
+    border-radius: 5px;
+    border: 2px dashed rgb(110, 244, 153);
+    background-color:rgb(218, 221, 181);
+}
+
+#button-two {
+    margin-right: .5%;
+}

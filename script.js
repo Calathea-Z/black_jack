@@ -27,7 +27,8 @@ let test = 0;
 let scoreP = 0;
 let scoreD = 0;
 let dealTo = true;
-let isAlive = true;
+let playerAlive = true;
+let dealerAlive = true;
 let dealerTurn = false;
 let winner = '';
     
@@ -181,13 +182,14 @@ function playerInput(){
         let tempCard = cardDeck.pop();
         hands[0].push(tempCard) 
         updateScore();
+        console.log(playerScore);
         addCard('#player-hand', playerHand, 1);
         checkAlive();
         setTimeout(dealerMove, 2000);      
     });
     stayButton.addEventListener('click', () => {
         playerStay = true;
-        dealerMove();
+        setTimeout(dealerMove, 2000);
     });
     
 }
@@ -197,25 +199,27 @@ function dealerMove() {
     let tempCard = cardDeck.pop();
     hands[1].push(tempCard)
     updateScore();
+    console.log(dealerScore);
     addCard('#dealer-hand', dealerHand, 2);
     checkAlive();
     }else{
     dealerStay();
+    checkAlive();
     alert("the Dealer has chosen to stand");
     }
 }
     
 function checkAlive(){
-    if (playerScore > 21 || dealerScore > 21){
-      isAlive = !isAlive;
-      console.log(`HERE ${isAlive}`);
-    }
-    console.log(`WORKS`);
-    updateDeckCount();
+    if (playerScore > 21){
+      playerAlive = false }
+      else if (dealerScore > 21){
+        dealerAlive = false;
+      }
+      return playerAlive, dealerAlive
 }
 
 function endCondition() {
-    if (isAlive === false) {
+    if (playerAlive === false || dealerAlive === false){
         return false}
     else {
         return true;
@@ -258,6 +262,8 @@ function updateDeckCount(){
 }
 
 function startGame(){
+    console.log(playerScore);
+    console.log(dealerScore)
 shuffleDeck(cardDeck);
 makePlayerGraphic();
 makeDealerGraphic();
@@ -272,12 +278,12 @@ function gameLoop(){
 startGame();
 playerInput();
 updateDeckCount();
-  let time = setInterval(function(){ 
+  let time = setInterval(function(){
         if(endCondition() === false){
             findWinner();
         clearInterval(time);
         return;}
-    },5000); 
+    },3000); 
 }
 
 gameLoop();
