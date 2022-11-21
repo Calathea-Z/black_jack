@@ -16,7 +16,7 @@ nav {
     background-color: rgb(243, 7, 7, .92);
     border: 2px dashed rgb(154, 250, 184);
     border-radius: 5px;
-    border-width: 0.20em;
+    border-width: 0.10em;
     color: rgb(154, 247, 5);
 }
 
@@ -26,10 +26,13 @@ nav {
 
 .mess-end{
     margin-left: 1%;
+    margin-top: .5%;
     font-size: 22px;
     display: flex;
     text-align: right;
     background-color: rgba(255, 247, 0, 0.4);
+    border: 2px dashed rgb(154, 250, 184);
+    border-width: 0.08em;
     border-radius: 30px;
     color: rgb(10, 247, 204);
     font-family: 'Monoton', cursive;
@@ -142,14 +145,6 @@ nav {
     border: 3px solid black;
 }
 
-.game-buttons {
-    display: flex;
-    justify-content: flex-start;
-    gap: 20px;
-    margin-left: 2.5%;
-    margin-top: .8%;
-}
-
 .front {
     padding: 8px;
     display: flex;
@@ -162,6 +157,23 @@ nav {
     background-color:rgb(160, 160, 160, .7);
     font-family: 'Dancing Script', cursive;
     font-size: 35px;
+}
+
+.bottom-container {
+    display: flex;
+    justify-content: space-between;
+}
+.game-buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    margin-left: 2.5%;
+    margin-top: .8%;
+}
+
+.updates {
+    color: white;
+    border: 2px dashed rgb(154, 250, 184);
 }
 
 #score_0, #score_1{
@@ -184,8 +196,8 @@ nav {
 #hit, #stay{
     color: rgb(1, 73, 216);
     font-family: 'Rubik Microbe', cursive;
-    width: 10%;
-    height: 40px;
+    width: 60px;
+    height: 80px;
     border-radius: 8px;
     border: 2px solid rgb(154, 250, 184);
     background-color:rgb(181, 218, 221)

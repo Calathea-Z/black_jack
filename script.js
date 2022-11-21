@@ -4,6 +4,8 @@ const stayButton = document.querySelector('#stay');
 const playAgainButton = document.querySelector('#button-one');
 // grab counter for card left in stack.
 const cardCount = document.querySelector('.card-pile');
+//grab text update area
+const textUpdate = document.querySelector('.updates');
 
 //Declare deck
 const cardDeck = [
@@ -176,16 +178,14 @@ function addCard(divNeeded, handType, area) {
 }
 function playerInput(){
     hitButton.addEventListener('click', () => {
-        console.log(`Hit Button Works`)
         let tempCard = cardDeck.pop();
         hands[0].push(tempCard) 
         updateScore();
         addCard('#player-hand', playerHand, 1);
         checkAlive();
-        dealerMove();      
+        setTimeout(dealerMove, 2000);      
     });
     stayButton.addEventListener('click', () => {
-        console.log(`Stay Button Works`);
         playerStay = true;
         dealerMove();
     });
@@ -199,20 +199,19 @@ function dealerMove() {
     updateScore();
     addCard('#dealer-hand', dealerHand, 2);
     checkAlive();
-    console.log(`IS ALIVE? ${isAlive}`);
     }else{
     dealerStay();
     alert("the Dealer has chosen to stand");
-    console.log(`IS ALIVE? ${isAlive}`);
     }
 }
     
 function checkAlive(){
     if (playerScore > 21 || dealerScore > 21){
       isAlive = !isAlive;
+      console.log(`HERE ${isAlive}`);
     }
+    console.log(`WORKS`);
     updateDeckCount();
-    return
 }
 
 function endCondition() {
@@ -224,21 +223,7 @@ function endCondition() {
 };
 
 function findWinner(){
-        if(playerScore === 21 && dealerScore != 21){ 
-            winner = "Player 1";           
-            alert('PLAYER 1 GOT BLACKJACK - LUCKY!!!')
-            updateDeckCount();
-        }
-        else if (dealerScore === 21 && playerScore != 21 ) {
-            winner = "Dealer";
-            alert('THE HOUSE ALWAYS WINS ;-)')
-            updateDeckCount();
-        }
-        else if(playerScore === 21 & dealerScore === 21){
-            alert('You are both lucky, but it cancels out. TIE')
-            updateDeckCount();
-        }       
-        else if (playerScore > dealerScore && playerScore < 22){
+     if (playerScore > dealerScore && playerScore < 22){
             winner = "Player 1";
             alert(`PLAYER 1 WINS`)
             updateDeckCount();
@@ -246,8 +231,24 @@ function findWinner(){
             winner = "Dealer";
             updateDeckCount();
         }
-        alert(`TIE GAME`); 
-    } 
+ }
+
+ function checkBJ() {
+    if(playerScore === 21 && dealerScore != 21){ 
+        winner = "Player 1";           
+        alert('PLAYER 1 GOT BLACKJACK - LUCKY!!!')
+        updateDeckCount();
+    }
+    else if (dealerScore === 21 && playerScore != 21 ) {
+        winner = "Dealer";
+        alert('THE HOUSE ALWAYS WINS ;-)')
+        updateDeckCount();
+    }
+    else if(playerScore === 21 & dealerScore === 21){
+        alert('You are both lucky, but it cancels out. TIE')
+        updateDeckCount();
+    }    
+ }
 
 function dealerStay(){
     return
@@ -263,17 +264,21 @@ makeDealerGraphic();
 deal();
 makeCards('#player-hand', playerHand, 1);
 makeCards('#dealer-hand', dealerHand, 2);
+checkBJ();
 updateDeckCount();
 }
 
 function gameLoop(){
-    startGame();
-    playerInput();
-    updateDeckCount();
-    if (endCondition() === false){
-        findWinner();
-    }
-    }
+startGame();
+playerInput();
+updateDeckCount();
+  let time = setInterval(function(){ 
+        if(endCondition() === false){
+            findWinner();
+        clearInterval(time);
+        return;}
+    },5000); 
+}
 
 gameLoop();
 
