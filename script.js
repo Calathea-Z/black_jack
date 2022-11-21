@@ -184,7 +184,7 @@ function addCard(divNeeded, handType, area) {
             fullCard.appendChild(frontCard);
             fullCard.appendChild(backCard);
 }
-
+//Player move function
 function playerInput(){
     hitButton.addEventListener('click', () => {
         document.querySelector('.narration').innerHTML = "You hit!"
@@ -193,7 +193,12 @@ function playerInput(){
         updateScore();
         console.log(playerScore);
         addCard('#player-hand', playerHand, 1);
-        checkAlive();
+        if (playerScore >= 21){
+            console.log(`HIT`)
+            findWinner();
+            return;
+        }
+        // checkAlive();
         setTimeout(dealerMove, 2000);    
     });
     stayButton.addEventListener('click', () => {
@@ -212,10 +217,17 @@ function dealerMove() {
     updateScore();
     console.log(dealerScore);
     addCard('#dealer-hand', dealerHand, 2);
-    checkAlive();
+        if(dealerScore >= 21){
+            console.log(`DEALER HIT`);
+            findWinner();
+            return;
+        }
+    // checkAlive();
     }else{
-    checkAlive();
+    // checkAlive();
     document.querySelector('.narration').innerHTML = "The house stays."
+    findWinner();
+    return;
     }
 }
     
@@ -240,10 +252,18 @@ function endCondition() {
 function findWinner(){
      if (playerScore > dealerScore && playerScore < 22){
         document.querySelector('.narration').innerHTML = "You have Won!"
+        console.log(`find winner working`)
             updateDeckCount();
         }else if (dealerScore > playerScore && dealerScore < 22){
         document.querySelector('.narration').innerHTML = "The house ALWAYS wins!"
+            console.log(`find winner working`)
             updateDeckCount();
+        }else if (playerScore > 21 ){ 
+        document.querySelector('.narration').innerHTML = "Ouch! Too high.. better luck next time."
+        }else if (dealerScore > 21){
+        document.querySelector('.narration').innerHTML = "The house busts, YOU WIN!" 
+        }else if (playerScore > 17 && playerScore < 21 && dealerScore > 17 && dealerScore < 21){
+            document.querySelector('.narration').innerHTML = "Its a draw. Play Again?" 
         }
  }
 
