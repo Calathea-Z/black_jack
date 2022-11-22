@@ -26,15 +26,14 @@ let dealerScore = 0;
 let test = 0; 
 let scoreP = 0;
 let scoreD = 0;
-// counter for new player card graphics after initial deal
-let p = 2;
-// counter for new dealer card graphics after initial deal
-let d = 2;
+// // counter for new player card graphics after initial deal
+// let p = 2;
+// // counter for new dealer card graphics after initial deal
+// let d = 2;
 let dealTo = true;
 let playerAlive = true;
 let dealerAlive = true;
 let dealerTurn = false;
-let winner = '';
 
 
  //shuffles deck   
@@ -84,8 +83,7 @@ function makeDealerGraphic(){
 }
  
 //Deals 2 cards to each player 
-function deal(){
-    
+function deal(){  
     for (let i = 0; i < 2; i++){  
         for (let j = 0; j < 2; j++){  
             let tempCard = cardDeck.pop();
@@ -102,7 +100,6 @@ function updateScore(){
         temp = hands[i];
         getScore(temp);
         dealTo = !dealTo 
-        checkAlive();
     }
     document.querySelector('#score_0').innerHTML = playerScore;
     document.querySelector('#score_1').innerHTML = dealerScore;
@@ -162,7 +159,6 @@ function addCard(divNeeded, handType, area) {
     let fullCard = document.createElement('div');
         fullCard.className = "full-card_" + area;   
         cardSpot.appendChild(fullCard)
-
     let frontCard = document.createElement('div');
     let backCard = document.createElement('div');   
     let emoji = ''; 
@@ -201,7 +197,6 @@ function playerInput(){
             findWinner();
             return;
         }
-        // checkAlive();
         setTimeout(dealerMove, 2000);    
     });
     stayButton.addEventListener('click', () => {
@@ -212,7 +207,7 @@ function playerInput(){
     });
     
 }
-    
+//Allows the dealer to take turn   
 function dealerMove() {
     if (dealerScore <= 17){
     document.querySelector('.narration').innerHTML = "The house hits."
@@ -233,16 +228,6 @@ function dealerMove() {
     }
 }
     
-function checkAlive(){
-    if (playerScore > 21){
-      playerAlive = false 
-    return playerAlive}
-      else if (dealerScore > 21){
-       dealerAlive = false;
-       return dealerAlive
-      }
-}
-
 function findWinner(){
      if (playerScore > dealerScore && dealerScore >= 17 && playerScore < 22){
         document.querySelector('.narration').innerHTML = "You have Won!"
