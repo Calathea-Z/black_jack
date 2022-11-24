@@ -9,10 +9,7 @@ const textUpdate = document.querySelector('.updates');
 
 //Declare deck
 const cardDeck = [
-['A', 'Spade', 11],['2', 'Spade', 2],['3', 'Spade', 3],['4', 'Spade', 4],['5', 'Spade', 5],['6', 'Spade', 6],['7', 'Spade', 7],['8', 'Spade', 8],['9', 'Spade', 9],['10', 'Spade', 10],['J', 'Spade', 10],['Q', 'Spade', 10],['K', 'Spade', 10],['A','Club', 11],['2','Club', 2],['3','Club', 3],['4','Club', 4],['5','Club', 5],['6','Club', 6],['7','Club', 7],['8','Club', 8],['9','Club', 9],['10','Club', 10],['J','Club', 10],['Q','Club', 10],['K','Club', 10],['A','Diamond', 11],['2','Diamond', 2],['3','Diamond', 3],['4','Diamond', 4],['5','Diamond', 5],['6','Diamond', 6],['7','Diamond', 7],['8','Diamond', 8],['9','Diamond', 9],['10','Diamond', 10],
-['J','Diamond', 10],['Q','Diamond', 10],['K','Diamond', 10],['A','Heart', 11],['2','Heart', 2],['3','Heart', 3],
-['4','Heart', 4],['5','Heart', 5],['6','Heart', 6],['7','Heart', 7],['8','Heart', 8],['9','Heart', 9],
-['10','Heart', 10],['J','Heart', 10],['Q','Heart', 10],['K','Heart', 10]];
+['A', 'Spade', 11],['2', 'Spade', 2],['3', 'Spade', 3],['4', 'Spade', 4],['5', 'Spade', 5],['6', 'Spade', 6],['7', 'Spade', 7],['8', 'Spade', 8],['9', 'Spade', 9],['10', 'Spade', 10],['J', 'Spade', 10],['Q', 'Spade', 10],['K', 'Spade', 10],['A','Club', 11],['2','Club', 2],['3','Club', 3],['4','Club', 4],['5','Club', 5],['6','Club', 6],['7','Club', 7],['8','Club', 8],['9','Club', 9],['10','Club', 10],['J','Club', 10],['Q','Club', 10],['K','Club', 10],['A','Diamond', 11],['2','Diamond', 2],['3','Diamond', 3],['4','Diamond', 4],['5','Diamond', 5],['6','Diamond', 6],['7','Diamond', 7],['8','Diamond', 8],['9','Diamond', 9],['10','Diamond', 10],['J','Diamond', 10],['Q','Diamond', 10],['K','Diamond', 10],['A','Heart', 11],['2','Heart', 2],['3','Heart', 3],['4','Heart', 4],['5','Heart', 5],['6','Heart', 6],['7','Heart', 7],['8','Heart', 8],['9','Heart', 9],['10','Heart', 10],['J','Heart', 10],['Q','Heart', 10],['K','Heart', 10]];
                   
 //Global variables
 const playerName = "Player"
@@ -26,10 +23,6 @@ let dealerScore = 0;
 let test = 0; 
 let scoreP = 0;
 let scoreD = 0;
-// // counter for new player card graphics after initial deal
-// let p = 2;
-// // counter for new dealer card graphics after initial deal
-// let d = 2;
 let dealTo = true;
 let playerAlive = true;
 let dealerAlive = true;
@@ -162,18 +155,20 @@ function addCard(divNeeded, handType, area) {
     let frontCard = document.createElement('div');
     let backCard = document.createElement('div');   
     let emoji = ''; 
-    let number = handType[2][0];
-    console.log(handType[2][0]);          
-         if(handType[2][1] === 'Diamond'){
+    let length = (handType.length - 1)
+    console.log(length);
+    let number = handType[length][0];
+    console.log(handType[length][0]);          
+         if(handType[length][1] === 'Diamond'){
              emoji = '♦️';
              frontCard.style.color = 'red';
-            }else if (handType[2][1] === 'Spade'){
+            }else if (handType[length][1] === 'Spade'){
              emoji = '♠️';
              frontCard.style.color = 'black';
-            }else if (handType[2][1] === 'Heart'){
+            }else if (handType[length][1] === 'Heart'){
              emoji = '♥️';
              frontCard.style.color = 'red';
-            }else if (handType[2][1] === 'Club'){
+            }else if (handType[length][1] === 'Club'){
              emoji = '♣️';
              frontCard.style.color = 'black'
             }
@@ -189,7 +184,7 @@ function playerInput(){
     hitButton.addEventListener('click', () => {
         document.querySelector('.narration').innerHTML = "You hit!"
         let tempCard = cardDeck.pop();
-        hands[0].push(tempCard) 
+        hands[0].push(tempCard)
         addCard('#player-hand', playerHand, 1);
         updateScore();
         if (playerScore >= 21){
