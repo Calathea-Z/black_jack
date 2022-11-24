@@ -254,7 +254,13 @@ function findWinner(){
     else if(playerScore === 21 & dealerScore === 21){
         document.querySelector('.narration').innerHTML = "What are the odds? You and the house got blackjack"
         updateDeckCount();
-    }    
+    }
+    else if (playerScore === 22){
+        document.querySelector('.narration').innerHTML = "You Bust"
+    } 
+    else if (dealerScore === 22){
+        document.querySelector('.narration').innerHTML = "House loses"
+    }   
  }
 
 function updateDeckCount(){

@@ -305,7 +305,8 @@ body {
         padding: 20px;
         font-family: 'Josefin Sans', sans-serif;
         margin-top: 2%;
-        margin-right: 35%;
+        margin-right: 25%;
+        border-radius: 200px;
         border: 2px dashed rgb(154, 250, 184);
     }
 }
