@@ -309,3 +309,49 @@ body {
     }
 }
 
+@media screen and (max-width: 667px) {
+    .header-end, .subtext {
+        font-size:  6px;
+    }
+
+    .message {
+        font-size: 10px;
+    }
+
+    .names {
+        font-size: 9px;
+    }
+
+    .gameboard-inner{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cards-in-play, .card-style {
+        height: .05%;
+    }
+
+    .card-pile {
+        height: 10px;
+    }
+
+    .updates {
+        font-size: 5px;
+        border-radius: 5px;
+        height: .5px;
+    }
+
+    #hit, #stay {
+        width: 50px;
+        height: 40px;
+        gap: 1px;
+    }
+    
+    #button-one, #button-two {
+        height: 20px;
+        margin-top: 0;
+        margin-right: 0;
+    
+}
+}
