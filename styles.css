@@ -1,31 +1,29 @@
 body {
-    background-color: rgb(27, 23, 27);
-    height:50%;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    height:50%;
+    background-color: rgb(27, 23, 27);  
 }
-
 
 .header {
     display: flex;
 }
 
 .header-end {
-    margin-left: 1%;
-    margin-top: .5%;
-    font-size: 22px;
     display: flex;
     text-align: right;
+    margin-left: 1%;
+    margin-top: .5%;
     background-color: rgba(255, 247, 0, 0.4);
     border: 4px dashed rgb(215, 249, 21);
+    border-radius: 30px;
     border-width: 0.25em;
     box-shadow: 0  0px 50px rgba(208, 241, 19, 1);
-    border-radius: 30px;
-    color: rgb(10, 247, 204);
     font-family: 'Monoton', cursive;
-    transform: rotate(10deg);
-      
+    font-size: 22px;
+    color: rgb(10, 247, 204); 
+    transform: rotate(10deg);     
 }   
 
 .subtext {
@@ -35,18 +33,17 @@ body {
 }
 
 .section-two {
-    font-family: 'Dancing Script', cursive;
     display: flex;
     justify-content: space-evenly;
+    font-family: 'Dancing Script', cursive;   
 }
 
 .message {
-    margin-top: -5%;
-    transform: rotate(-10deg);
     align-self: flex-end;
+    margin-top: -5%;
     color: rgb(239, 249, 170);
     font-size: 28px;
-    
+    transform: rotate(-10deg);
 }
 
 .gameboard-outer {
@@ -56,20 +53,21 @@ body {
 }
 
 .names {
-    font-family: 'Dancing Script', cursive;
-    text-decoration: overline;
-    font-size: 15px;
-    color: rgb(239, 249, 170);
     display: flex;
     justify-content: space-around;
     gap: 200px;
+    font-size: 15px;
+    color: rgb(239, 249, 170);
+    font-family: 'Dancing Script', cursive;
+    text-decoration: overline;
+    
 }
 .gameboard-inner {
-    padding: 10px;
     display: flex;
     flex-direction: space-evenly;
     width: 98%;
     height: 10%;
+    padding: 10px; 
     background-color: rgb(33, 118, 33);
     border: 2px solid rgb(154, 250, 184, .3);
     border-radius: 15px;
@@ -83,20 +81,19 @@ body {
 }
 
 .card-pile {
-    margin-top: 1.5%;
-    padding: 10px;
-    font-size: 18px;
     display: flex;
     justify-content: center;
-    font-family: 'Rubik Microbe', cursive;
     align-items: center;
     width: 160px;
     height: 100px;
-    border-radius: 5px;
+    margin-top: 1.5%;
+    padding: 10px;
     background-color:rgb(108, 153, 244);
     border: 2px solid rgb(154, 250, 184);
+    border-radius: 5px;
+    font-family: 'Rubik Microbe', cursive;
+    font-size: 18px;
     color:rgb(107, 248, 79);
-    
     text-align: center;
 }
 
@@ -105,35 +102,37 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    border-radius: 5px;
     background-color:rgb(6, 138, 2);
     border: 3px solid black;
+    border-radius: 5px;
 }
 
 .card-style {
-    padding: 8px;
-    gap: 10px;
     display: flex;
     justify-content: space-evenly;
     flex-wrap:wrap;
+    gap: 10px;
     width: 300px;
     height: 500px;
-    border-radius: 4px;
+    padding: 8px;
     background-color: rgba(250, 216, 27, 0.9);
     border: 3px solid black;
+    border-radius: 4px;
+   
+    
 }
 
 .front {
-    padding: 8px;
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
     justify-items: space-between;
-    border: 2px solid rgb(154, 250, 184, .8);
     width: 100px;
     height: 140px;
-    border-radius: 5px;
+    padding: 8px;
     background-color:rgb(160, 160, 160, .7);
+    border: 2px solid rgb(154, 250, 184, .8);
+    border-radius: 5px;
     font-family: 'Dancing Script', cursive;
     font-size: 35px;
 }
@@ -151,27 +150,27 @@ body {
 }
 
 .updates {
-    color: white;
-    background-color:rgb(154, 247, 5, .7); 
-    font-size: 60px;
-    padding: 20px;
-    font-family: 'Josefin Sans', sans-serif;
     margin-top: 2%;
     margin-right: 20%;
+    padding: 20px;
     border: 2px dashed rgb(154, 250, 184);
+    background-color:rgb(154, 247, 5, .7); 
+    border-radius: 200px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 60px;
+    color: white;
 }
 
 .footer {
-    position: fixed;
-    bottom: 0;
-    right: 0;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    gap: 4px;
+    position: fixed;
     width: 99.8%;
     height: 3.5%;
-    gap: 4px;
-    /* background-color: rgba(133, 133, 133, 0.009); */
+    bottom: 0;
+    right: 0;
     border-radius: 5px;
     border-width: 0.10em;
     color: rgb(154, 247, 5);
@@ -181,35 +180,33 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
+    width: 25%;
+    height: 18%;
+    margin-bottom: 5%;
     background-color: rgb(254, 246, 198);
     border: 3px solid rgb(154, 250, 184, .5);
-    margin-bottom: 5%;
-    width: 25%;
-    height: 18%;;
+    border-radius: 5px;
     font-family: 'Monoton', cursive;
-    font-size: 50px;
     font-weight: bolder;
-    color:rgb(69, 44, 234)
-    
+    font-size: 50px;
+    color:rgb(69, 44, 234)  
 }
 
 #hit, #stay {
-    color: rgb(1, 73, 216);
-    font-family: 'Rubik Microbe', cursive;
     width: 60px;
     height: 80px;
-    border-radius: 8px;
+    background-color:rgb(181, 218, 221);
     border: 2px solid rgb(154, 250, 184);
-    background-color:rgb(181, 218, 221)
+    border-radius: 8px;
+    font-family: 'Rubik Microbe', cursive;
+    color: rgb(1, 73, 216);
 }
 
 #button-one, #button-two {
-    font-family: 'Rubik Microbe', cursive;
-    /* width: 10%; */
     height: 40px;
-    border-radius: 5px;
     border: 2px dashed rgb(110, 244, 153);
+    border-radius: 5px;
+    font-family: 'Rubik Microbe', cursive;
     background-color:rgb(218, 221, 181);
 }
 
@@ -224,18 +221,19 @@ body {
 }
 
 @media screen and (max-width: 1600px) {
+    
     body {
-        background-color: rgb(27, 23, 27);
-        height:50%;
         display: flex;
         flex-direction: column;
         gap: 1px;
+        height:50%;
+        background-color: rgb(27, 23, 27); 
     }
 
     .message {
         margin-top: -8%;
-        transform: rotate(-4deg);
-        font-size: 20px;     
+        font-size: 20px; 
+        transform: rotate(-4deg);    
     }
 
     .header {
@@ -257,23 +255,23 @@ body {
     }   
 
     .names {
-        font-family: 'Dancing Script', cursive;
-        text-decoration: overline;
-        font-size: 10px;
-        color: rgb(239, 249, 170);
         display: flex;
         justify-content: space-around;
         gap: 50px;
+        font-family: 'Dancing Script', cursive;
+        font-size: 10px;
+        text-decoration: overline;
+        color: rgb(239, 249, 170);
     }
 
     .card-pile {
-        margin-top: 0;
-        padding: 5px;
-        font-size: 10px;
         display: flex;
         width: 80px;
         height: 50px;
-        text-align: center;
+        margin-top: 0;
+        padding: 5px;
+        font-size: 10px;
+        text-align: center;    
     }
 
     .cards-in-play {
@@ -281,33 +279,33 @@ body {
     }
 
     .card-style {
-        padding: 2px;
         gap: 5px;
         width: 300px;
         height: 200px;
+        padding: 2px;  
     }
 
     .front {
-        padding: 1px;
         display: flex;
         width: 70px;
         height: 80px;
-        border-radius: 5px;
+        padding: 1px;
         background-color:rgb(160, 160, 160, .7);
+        border-radius: 5px;
         font-family: 'Dancing Script', cursive;
         font-size: 35px;
     }
 
     .updates {
-        color: white;
-        background-color:rgb(154, 247, 5, .7); 
-        font-size: 30px;
-        padding: 20px;
-        font-family: 'Josefin Sans', sans-serif;
         margin-top: 2%;
         margin-right: 25%;
-        border-radius: 200px;
+        padding: 20px;
+        background-color:rgb(154, 247, 5, .7); 
         border: 2px dashed rgb(154, 250, 184);
+        border-radius: 200px;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 30px;
+        color: white;
     }
 }
 
