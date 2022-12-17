@@ -1,8 +1,6 @@
 - This is a game of Black Jack. 
 - Black jack is a game where the player aims to beat the house (computer) by    achieving a hand whose points total is nearer to 21 than the house's hand without exceeding 21.
 
-![Early UI Image ](./black_jack_screens/OG_UI.png "Early UI Image")
-![Another UI Image](./black_jack_screens/ui_pt_2.png "UI Update")
 ![Current UI](./black_jack_screens/current_ui.png "Current UI")
 
 - Technologies used in this game include: JavaScript, HTML, & CSS.
